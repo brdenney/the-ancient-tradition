@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ancient Tradition — Study Companion</title>
+<style>
+  :root{
+    --bg:#f2f4f7; --panel:#ffffff; --ink:#22262e; --soft:#5c6672; --line:#dce1e8;
+    --gold:#3d5a80; --gold-soft:#e7edf4; --deep:#1c2733; --accent:#31527a;
+    --tag:#e4e9f0; --tag-ink:#3f5570;
+    --father:#4a6d94; --mother:#7a5a8c; --son:#3b7360; --adversary:#a2454b; --revealer:#4a5f7a; --humanity:#5c6773;
+    --lds:#eaf0f4; --lds-line:#c6d5de; --lds-ink:#33586b;
+    --shadow:0 1px 3px rgba(30,40,55,.08), 0 6px 18px rgba(30,40,55,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#171a1f; --panel:#20242b; --ink:#e6e9ee; --soft:#a3adba; --line:#333944;
+      --gold:#7fa3c9; --gold-soft:#28323f; --deep:#e6e9ee; --accent:#8fb4d9;
+      --tag:#2b3340; --tag-ink:#b7c8db;
+      --lds:#1c2731; --lds-line:#33495a; --lds-ink:#9dc0d6;
+      --shadow:0 1px 3px rgba(0,0,0,.4);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; font-family:Georgia,'Times New Roman',serif; background:var(--bg); color:var(--ink); line-height:1.6; font-size:16px;}
+  header.masthead{ text-align:center; padding:42px 20px 18px; border-bottom:3px double var(--gold); background:linear-gradient(180deg, var(--gold-soft), var(--bg));}
+  header.masthead h1{font-size:2.1em; margin:0 0 6px; letter-spacing:.5px; color:var(--deep);}
+  header.masthead .sub{color:var(--soft); font-style:italic; max-width:760px; margin:0 auto;}
+  .motto{margin-top:10px; color:var(--accent); font-size:.95em;}
+  nav{position:sticky; top:0; z-index:50; background:var(--panel); border-bottom:1px solid var(--line); box-shadow:var(--shadow); display:flex; flex-wrap:wrap; justify-content:center; gap:2px; padding:6px 8px;}
+  nav button{font-family:inherit; font-size:.92em; background:none; border:none; color:var(--soft); padding:8px 13px; cursor:pointer; border-radius:6px;}
+  nav button:hover{background:var(--tag); color:var(--ink);}
+  nav button.active{background:var(--gold); color:#fff; font-weight:bold;}
+  main{max-width:1020px; margin:0 auto; padding:26px 18px 80px;}
+  section.tab{display:none;}
+  section.tab.active{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(4px)} to{opacity:1; transform:none}}
+  h2{font-size:1.55em; color:var(--deep); border-bottom:2px solid var(--gold); padding-bottom:6px; margin-top:8px;}
+  h3{color:var(--accent); margin-bottom:6px;}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:18px 20px; margin:14px 0; box-shadow:var(--shadow);}
+  .lds{background:var(--lds); border:1px solid var(--lds-line); border-left:4px solid var(--lds-ink); border-radius:8px; padding:10px 14px; margin-top:10px; font-size:.95em; color:inherit;}
+  .lds b{color:var(--lds-ink);}
+  .eps{margin-top:8px;}
+  .ep{display:inline-block; background:var(--tag); color:var(--tag-ink); font-size:.74em; padding:2px 8px; border-radius:999px; margin:2px 3px 0 0; cursor:pointer; font-family:Verdana,sans-serif;}
+  .ep:hover{background:var(--gold); color:#fff;}
+  details{margin:10px 0;}
+  details>summary{cursor:pointer; font-weight:bold; color:var(--deep); padding:6px 2px; list-style:none;}
+  details>summary::before{content:"▸ "; color:var(--gold);}
+  details[open]>summary::before{content:"▾ ";}
+  .searchbar{width:100%; font-family:inherit; font-size:1em; padding:10px 14px; border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--ink); margin:10px 0 4px;}
+  .toggle-row{display:flex; gap:8px; align-items:center; margin:10px 0; flex-wrap:wrap;}
+  .toggle-row button{font-family:inherit; padding:7px 14px; border:1px solid var(--line); background:var(--panel); color:var(--soft); border-radius:999px; cursor:pointer;}
+  .toggle-row button.on{background:var(--gold); border-color:var(--gold); color:#fff;}
+  .arch-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; border-left:6px solid var(--gold); padding-left:12px; margin:26px 0 4px;}
+  .arch-head h3{margin:0; font-size:1.25em;}
+  .arch-head .maps{font-size:.9em; color:var(--soft); font-style:italic;}
+  .figure-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:10px; margin-top:10px;}
+  .fig{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 12px; box-shadow:var(--shadow); border-top:3px solid var(--gold);}
+  .fig.father{border-top-color:var(--father)} .fig.mother{border-top-color:var(--mother)}
+  .fig.son{border-top-color:var(--son)} .fig.adversary{border-top-color:var(--adversary)}
+  .fig.revealer{border-top-color:var(--revealer)} .fig.humanity{border-top-color:var(--humanity)}
+  .fig .nm{font-weight:bold; color:var(--deep);}
+  .fig .cu{font-size:.78em; color:var(--soft); font-family:Verdana,sans-serif; text-transform:uppercase; letter-spacing:.5px;}
+  .fig .ds{font-size:.92em; margin-top:4px;}
+  .badge{display:inline-block; font-size:.7em; font-family:Verdana,sans-serif; padding:1px 8px; border-radius:999px; color:#fff; margin-left:6px; vertical-align:middle;}
+  .badge.father{background:var(--father)} .badge.mother{background:var(--mother)} .badge.son{background:var(--son)}
+  .badge.adversary{background:var(--adversary)} .badge.revealer{background:var(--revealer)} .badge.humanity{background:var(--humanity)}
+  table{width:100%; border-collapse:collapse; margin:12px 0; font-size:.95em; background:var(--panel);}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top;}
+  th{background:var(--gold-soft); color:var(--deep);}
+  .timeline{position:relative; margin:24px 0; padding-left:30px; border-left:3px solid var(--gold);}
+  .tl-item{position:relative; margin:0 0 18px;}
+  .tl-item::before{content:""; position:absolute; left:-39px; top:8px; width:13px; height:13px; border-radius:50%; background:var(--gold); border:3px solid var(--bg);}
+  .tl-item .card{margin:0;}
+  .tl-num{font-family:Verdana,sans-serif; font-size:.72em; color:var(--gold); letter-spacing:1.5px; text-transform:uppercase;}
+  .sym-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:10px;}
+  .sym{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; box-shadow:var(--shadow);}
+  .sym .ic{font-size:1.5em;}
+  .sym b{color:var(--deep);}
+  .ep-item{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:9px 14px; margin:6px 0;}
+  .ep-item .t{font-weight:bold; color:var(--deep);}
+  .ep-item .n{color:var(--gold); font-family:Verdana,sans-serif; font-size:.8em; margin-right:8px;}
+  .ep-item.hl{outline:3px solid var(--gold);}
+  .note{font-size:.9em; color:var(--soft); font-style:italic;}
+  .two-col{columns:2; column-gap:30px;}
+  @media(max-width:700px){.two-col{columns:1}}
+  .small{font-size:.88em;}
+  blockquote{border-left:4px solid var(--gold); margin:10px 0; padding:4px 16px; color:var(--soft); font-style:italic; background:var(--gold-soft); border-radius:0 8px 8px 0;}
+  @media print{ nav{display:none} section.tab{display:block !important; page-break-before:always;} body{background:#fff} }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <h1>The Ancient Tradition</h1>
+  <div class="sub">A consolidated study companion to Episodes 1–69 of <i>The Ancient Tradition</i> podcast, hosted by Dr.&nbsp;Jack (Jacqueline) Logan — with the recurring themes gathered in one place, the world's gods and heroes mapped to their archetypes, and explicit connections drawn to the doctrines of the Restoration.</div>
+  <div class="motto">“Knowledge is the wing wherewith we fly to heaven.” — William Shakespeare</div>
+</header>
+
+<nav id="nav">
+  <button data-tab="overview" class="active">Overview</button>
+  <button data-tab="story">The Grand Story</button>
+  <button data-tab="themes">Core Themes</button>
+  <button data-tab="characters">Character Map</button>
+  <button data-tab="god">Who Is God?</button>
+  <button data-tab="symbols">Symbols</button>
+  <button data-tab="ldsmap">LDS Connections</button>
+  <button data-tab="sources">Texts &amp; Names</button>
+  <button data-tab="episodes">Episode Index</button>
+</nav>
+
+<main>
+
+<!-- ============ OVERVIEW ============ -->
+<section class="tab active" id="overview">
+  <h2>What This Podcast Is About</h2>
+  <div class="card">
+    <p><b>The premise.</b> Dr. Jack Logan — a university professor in the social sciences who has spent decades studying comparative religion — argues that the world's religions are not independent inventions. Drawing on scholars like Lord Raglan, René Guénon, Mircea Eliade, Joseph Campbell, and Marinus van der Sluijs, she contends that they descend from a single, pure religious tradition <b>revealed by God to the first human beings</b> at the dawn of history. She calls it <b>the Ancient Tradition</b>.</p>
+    <p><b>The method: “stubborn bits.”</b> Like a telephone game played in reverse, she hunts for the motifs that survive intact across continents and millennia — the same creation story, the same divine council, the same dragon battle, the same anointed king — appearing in Egypt, Mesopotamia, Canaan, India, China, Scandinavia, Polynesia, Africa, and the Americas. When a theme can be traced to the world's oldest texts on every continent, she counts it as a fragment of the original revealed theology and pieces it back together, episode by episode, like a college course.</p>
+    <p><b>The spirit of it.</b> She insists this is a spiritual pursuit, not just an academic one: the reconstructed theology answers the great questions — Who is God? Why are we here? What happens after death? — and the answers converge into a single coherent, family-centered theology of kingship.</p>
+  </div>
+  <div class="card">
+    <h3>Why a Latter-day Saint will feel at home here</h3>
+    <p>The podcast never mentions The Church of Jesus Christ of Latter-day Saints or its scriptures. Yet nearly every major conclusion Dr. Logan reaches — by digging through pyramid texts, cuneiform tablets, and Ugaritic epics — lands on ground that is <i>distinctively</i> Restoration doctrine rather than mainstream Christian doctrine: a divine council of gods, a premortal existence, a war in heaven over the Father's throne, creation by organizing eternal matter (not <i>ex nihilo</i>), an embodied Father, a Mother in Heaven, eternal marriage, worlds without number, esoteric temple ordinances required for eternal life, and human beings as literal children of God destined to become kings and queens, priests and priestesses. Her very framing — an original pure religion given to Adam, corrupted over time, recoverable today — is the Latter-day Saint narrative of dispensations, apostasy, and restoration. The <b>LDS Connections</b> tab gathers these parallels with scripture references; green boxes throughout the guide tie each theme back to Restoration teaching.</p>
+  </div>
+  <div class="card small">
+    <h3>How to use this guide — and two cautions</h3>
+    <p><b>Navigation.</b> Use the tabs above. <b>The Grand Story</b> tells the whole reconstructed narrative in order — read this first. <b>Core Themes</b> consolidates her recurring ideas (she revisits the same ones across many episodes). <b>Character Map</b> shows who maps to whom across cultures. Episode pills like <span class="ep">Ep 16</span> are clickable and jump to the Episode Index so you can re-listen to the source discussion.</p>
+    <p><b>Caution 1 — transcripts.</b> This guide was built from AI-generated transcripts, which garble many proper names (the Shabaka Stone became the “Chewbacca stone”). Spellings here have been corrected to the standard scholarly forms; the <b>Texts &amp; Names</b> tab includes a correction table. Verify any quotation against the show notes at theancienttradition.com before citing it.</p>
+    <p><b>Caution 2 — interpretation.</b> The parallels are Dr. Logan's scholarly reconstruction, and the LDS mappings in this guide are an interpretive layer added for your study. Comparative mythology is suggestive, not proof; hold the patterns next to scripture and let scripture lead.</p>
+  </div>
+</section>
+
+<!-- ============ GRAND STORY ============ -->
+<section class="tab" id="story">
+  <h2>The Grand Story the Ancients Told</h2>
+  <p>Across 69 episodes, Dr. Logan reconstructs one continuous narrative — “mankind's one great story.” Told in order, it runs from a divine family in eternity, through a war in heaven and the creation, down to you and me and our royal destiny. Every myth she examines is a cultural retelling of some chapter of this story.</p>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="card"><span class="tl-num">Act 1 — Eternity</span>
+      <h3>A divine family reigns in the heavens</h3>
+      <p>Before anything was made, the High God — a glorious, embodied King of righteousness — reigned with his wife, the Queen of Heaven, from a temple-palace at the sacred center of the cosmos. Together they are the Father and Mother of a vast divine family: gods, sons and daughters — including us. The heavens are ordered as a kingdom and governed through a <b>council of the gods</b>, with a high council of twelve princely sons.</p>
+      <div class="eps"><span class="ep">Ep 16</span><span class="ep">Ep 17</span><span class="ep">Ep 18</span><span class="ep">Ep 45</span><span class="ep">Ep 54</span><span class="ep">Ep 56</span><span class="ep">Ep 57</span><span class="ep">Ep 58</span><span class="ep">Ep 63</span><span class="ep">Ep 64</span></div>
+      <div class="lds"><b>Restoration:</b> Heavenly Parents (Gospel Topics, “Mother in Heaven”; “O My Father”); the premortal council of the Gods (Abraham 3:22–28; 4:1); the family as the order of heaven (D&amp;C 132).</div>
+    </div></div>
+
+    <div class="tl-item"><div class="card"><span class="tl-num">Act 2 — Rebellion</span>
+      <h3>The rebel son and the war in heaven (the “primordial theomachy”)</h3>
+      <p>A beloved member of the council rebelled, coveting the Father's throne: Yam refusing homage to El, the Anzu bird stealing the Tablet of Destinies (“I will take kingship for myself”), Set murdering Osiris, Lucifer crying “I will ascend… I will be like the Most High.” The rebel is everywhere depicted as a hideous <b>sea serpent / dragon</b> prowling the chaotic primordial waters. The battle that followed was a <i>spiritual</i> war — fought over the authority of the High God and the order of heaven.</p>
+      <div class="eps"><span class="ep">Ep 15</span><span class="ep">Ep 19</span><span class="ep">Ep 20</span><span class="ep">Ep 22</span><span class="ep">Ep 23</span></div>
+      <div class="lds"><b>Restoration:</b> Lucifer sought the Father's honor and throne and was cast down (Moses 4:1–4; Isaiah 14:12–15; Revelation 12:7–9; D&amp;C 76:25–28).</div>
+    </div></div>
+
+    <div class="tl-item"><div class="card"><span class="tl-num">Act 3 — The Champion</span>
+      <h3>The selfless son volunteers and is armed</h3>
+      <p>In the council, a beloved, selfless son — Marduk, Ninurta, Baal, Horus, Christ — volunteers to defend his Father's kingdom. He is armed with a <b>special weapon</b> (Marduk's bow, Excalibur, the sword in the Barnstokkr tree, even ruby slippers) and a <b>protective garment</b> (cloaks, armor, animal skins). Dr. Logan stresses these are symbols: the weapon is the divine word/wind/power of God, given only to the worthy heir, and the garment is divine protection. Before the battle, the gods test his power: he creates and destroys by his <b>word</b> alone.</p>
+      <div class="eps"><span class="ep">Ep 16</span><span class="ep">Ep 17</span><span class="ep">Ep 20</span><span class="ep">Ep 21</span></div>
+      <div class="lds"><b>Restoration:</b> “Whom shall I send?” and the Beloved Son chosen from the beginning (Abraham 3:27; Moses 4:2); the word of God as the iron rod and the sword of the Spirit (1 Nephi 11:25; Ephesians 6); sacred clothing as a symbol of protection and covenant.</div>
+    </div></div>
+
+    <div class="tl-item"><div class="card"><span class="tl-num">Act 4 — The Wound</span>
+      <h3>The hero is wounded — and healed by the Tree</h3>
+      <p>The dragon scorches the hero, who crumples under terrible wounds — Osiris is even killed outright. All seems lost. Then comes the healing: the fragrant sap, dew, oil, or honey of the <b>Tree of Life</b> anoints and revives him. Myrrh — the blood-red, bitter, sweet-smelling resin that “bleeds” from its tree — becomes the world's anointing oil. The Christmas tree, the wise men's myrrh, and Mary's spikenard all remember it. The hero's wounds and the tree's balm are the ancient world's picture of sacrifice and atonement.</p>
+      <div class="eps"><span class="ep">Ep 8</span><span class="ep">Ep 22</span><span class="ep">Ep 23</span><span class="ep">Ep 24</span></div>
+      <div class="lds"><b>Restoration:</b> the Atonement — Christ wounded, bleeding “at every pore,” then triumphant (Mosiah 3:7; Alma 7:11–13); the Tree of Life as the love of God manifested in Christ (1 Nephi 8; 11:8–25).</div>
+    </div></div>
+
+    <div class="tl-item"><div class="card"><span class="tl-num">Act 5 — Coronation</span>
+      <h3>The victor is anointed and crowned King of Kings</h3>
+      <p>Having vanquished the dragon, the son is anointed, enthroned <i>on his Father's throne</i>, and given an inheritance: an <b>eternal kingdom</b>. The Papyrus of Ani says it of Osiris; the Enuma Elish of Marduk; the Baal Cycle of Baal; Revelation 3:21 of Christ — who promises the very same coronation to all who overcome. He is “King of kings” precisely because he makes other kings and queens. And an eternal kingdom cannot be one world: the ancients spoke of innumerable Indras, countless Brahmas, universes beyond universes.</p>
+      <div class="eps"><span class="ep">Ep 25</span><span class="ep">Ep 26</span><span class="ep">Ep 27</span><span class="ep">Ep 49</span></div>
+      <div class="lds"><b>Restoration:</b> exaltation — thrones, kingdoms, principalities (D&amp;C 132:19–20); joint-heirs with Christ (Romans 8:17); worlds without number (Moses 1:33; D&amp;C 76:24).</div>
+    </div></div>
+
+    <div class="tl-item"><div class="card"><span class="tl-num">Act 6 — Creation</span>
+      <h3>Order out of chaos: the word, the wind, the light</h3>
+      <p>The pre-creative state was everywhere described as dark, churning <b>primordial waters</b> — a symbol for an infinite ocean of unorganized, eternal matter. Creation <i>ex nihilo</i> is flatly rejected. Creation begins with a <b>thought</b>, then a <b>word</b> (Ptah's Memphite Theology, the Popol Vuh, the Hopi creation song, John 1), carried by a <b>brooding wind</b> — God's breath, his vital essence — which infuses every particle with his <b>light</b>, the energy that counters entropy and holds all things in order. The “Big Bang” is the cosmic egg cracking: God's ineffable light flooding the abyss from the timeless Holy of Holies.</p>
+      <div class="eps"><span class="ep">Ep 10</span><span class="ep">Ep 11</span><span class="ep">Ep 12</span><span class="ep">Ep 13</span><span class="ep">Ep 14</span><span class="ep">Ep 30</span></div>
+      <div class="lds"><b>Restoration:</b> “the Gods organized” the heavens from eternal matter (Abraham 4:1; D&amp;C 93:33); creation by the word of His power (Moses 1:32; Jacob 4:9); the Light of Christ “in all things… which giveth life to all things” (D&amp;C 88:6–13).</div>
+    </div></div>
+
+    <div class="tl-item"><div class="card"><span class="tl-num">Act 7 — The Sacred Center</span>
+      <h3>The primordial mound, the foundation stone, the cosmic temple</h3>
+      <p>The first creation was a <b>hill rising from the waters</b> — the primordial mound, anchored by the <b>foundation stone</b> where God begins his work and builds his throne and temple. Every pyramid, ziggurat, and sacred mound replicates it; every “center stone” claims it — the Even haShetiyah under the Dome of the Rock, the Kaaba's black stone, the Greek omphalos, Rome's Roma Quadrata, Cusco, the Lia Fáil, Hopi Oraibi. The stone is layered symbolism: where the four corners converge, where God dwells, the Holy of Holies, the “lid of hell” that locks the dragon out — and ultimately a symbol of the Son himself. The whole ordered cosmos is a <b>temple</b>, walled off from the profane waters by a cosmic wall (the ouroboros, the shen ring, the firmament, Marduk's bolt and guard).</p>
+      <div class="eps"><span class="ep">Ep 31</span><span class="ep">Ep 33</span><span class="ep">Ep 34</span><span class="ep">Ep 35</span><span class="ep">Ep 36</span><span class="ep">Ep 37</span><span class="ep">Ep 38</span><span class="ep">Ep 50</span><span class="ep">Ep 51</span><span class="ep">Ep 52</span><span class="ep">Ep 53</span></div>
+      <div class="lds"><b>Restoration:</b> Christ the sure foundation and rock (Helaman 5:12; Matthew 16:18); the temple as the sacred center of Zion; creation itself patterned as sacred, bounded, consecrated space; the veil dividing sacred from profane.</div>
+    </div></div>
+
+    <div class="tl-item"><div class="card"><span class="tl-num">Act 8 — Paradise</span>
+      <h3>The earth in heaven's embrace: Eden, the golden age</h3>
+      <p>The newly created earth was not where it is now — it was <i>close to heaven</i>, in an intimate embrace (Sumerian <i>An-Ki</i>, Maori Rangi and Papa, African accounts of the low sky when “God lived among men — with his wife”). That first time — Zep Tepi, Dilmun, the Krita Yuga, the Golden Age, the Dreamtime, <b>the Garden of Eden</b> — knew no death, decay, time, or entropy. Eden itself was the primordial mound: the earth's <b>first temple</b>, where God dwelt, and where (per the Lenape elder Tantaqué's “Turtle Island” account) the sacred tree grew <i>at the center of the North American continent</i>.</p>
+      <div class="eps"><span class="ep">Ep 4</span><span class="ep">Ep 32</span><span class="ep">Ep 42</span><span class="ep">Ep 43</span></div>
+      <div class="lds"><b>Restoration:</b> no death before the Fall (2 Nephi 2:22); Eden located in Jackson County, Missouri — the heart of North America (D&amp;C 57; 116; teachings of Joseph Smith on Adam-ondi-Ahman) — a startling echo of Turtle Island; the earth to be renewed to paradisiacal glory (Article of Faith 10); Enoch's Zion received into heaven's embrace (Moses 7).</div>
+    </div></div>
+
+    <div class="tl-item"><div class="card"><span class="tl-num">Act 9 — Humanity</span>
+      <h3>We arrive: children of the gods, born through the hole between worlds</h3>
+      <p>The ancients say human beings <b>existed before this earth</b> — conscious children of the divine family, begotten in the primordial realm. They came here to gain knowledge of good and evil “to become as the gods” (the Zuni children clamored to come and “grow wiser”). They entered through the <b>sacred center</b> — the sipapu of the Hopi kiva, the Inca place of emergence, a hole between worlds — or were “born from the sacred tree” (Mixtec pochote, Roman oak-born, Sandawe baobab): symbols of birth from divine parents that mark their descendants as royal heirs. Adam and Eve, the first king and queen, were ordained priest and priestess and married by God in the garden temple.</p>
+      <div class="eps"><span class="ep">Ep 4</span><span class="ep">Ep 64</span><span class="ep">Ep 66</span><span class="ep">Ep 67</span><span class="ep">Ep 68</span><span class="ep">Ep 69</span></div>
+      <div class="lds"><b>Restoration:</b> premortal existence (Abraham 3:22–23; Jeremiah 1:5; Alma 13:3); mortality as the essential school for godhood (2 Nephi 2:25; Abraham 3:25–26); spirits passing through the veil; literal offspring of God (Acts 17:29; Romans 8:16).</div>
+    </div></div>
+
+    <div class="tl-item"><div class="card"><span class="tl-num">Act 10 — The Way Back</span>
+      <h3>“As above, so below”: revelation, rites, and royal destiny</h3>
+      <p>From the beginning, God revealed the tradition to humanity — to Adam and Eve in Eden, anew to Enoch, through Thoth in Egypt, through Enki and the seven sages (apkallu) in Mesopotamia, Baiame in Australia, Maasaw at Hopi Oraibi — always with <b>initiation rituals</b> and an <b>esoteric body of knowledge</b> “essential to obtaining eternal life.” Earthly religion replicates heaven: kings are anointed with myrrh as the Son was anointed; marriages are performed at the sacred center beneath a four-pillared canopy (mandap, chuppah, ciborium); worshippers circle the throne in the ring dance. The goal of it all: that every man and woman conquer the dragon in their own life and be anointed, crowned, and married into the divine family — kings and queens over kingdoms of their own. “Thus the gods did, thus men do.”</p>
+      <div class="eps"><span class="ep">Ep 3</span><span class="ep">Ep 5</span><span class="ep">Ep 6</span><span class="ep">Ep 7</span><span class="ep">Ep 8</span><span class="ep">Ep 9</span><span class="ep">Ep 59</span><span class="ep">Ep 60</span><span class="ep">Ep 61</span><span class="ep">Ep 62</span><span class="ep">Ep 65</span></div>
+      <div class="lds"><b>Restoration:</b> the gospel and its ordinances taught to Adam (Moses 5:58–59; 6:64–68); the endowment as revealed esoteric knowledge — “the mysteries of godliness” (D&amp;C 84:19–22); anointing, clothing, and sealing in holy temples; eternal marriage as the gate to the highest degree (D&amp;C 131:1–4); kings and queens, priests and priestesses unto God (Revelation 1:6; 5:10).</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ THEMES ============ -->
+<section class="tab" id="themes">
+  <h2>Core Themes — the “Stubborn Bits,” Consolidated</h2>
+  <p>Dr. Logan circles the same handful of master themes again and again, adding cultures and texts each pass. Here is each theme stated once, with its strongest evidence, the episodes that develop it, and its Restoration parallel.</p>
+
+  <div class="card">
+    <h3>1. One original, God-revealed religion</h3>
+    <p>The ancients <i>unanimously claim</i> their religion was revealed, not invented: Thoth revealed every aspect of Egyptian temple worship; Enlil revealed “a mystery of the gods” to Utnapishtim in the ark; Baiame taught initiation rites at the sacred ground of New South Wales; Mahatala gave sacred ceremonies in the Dayak primeval village; God taught Adam and Eve in Eden and revealed “everything from beginning to end” anew to Enoch. The world's religions are the telephone-game descendants of that single revelation — degraded, but with stubborn bits intact.</p>
+    <div class="eps"><span class="ep">Ep 1</span><span class="ep">Ep 2</span><span class="ep">Ep 3</span><span class="ep">Ep 4</span><span class="ep">Ep 5</span></div>
+    <div class="lds"><b>Restoration:</b> the everlasting gospel taught from Adam down through dispensations, lost by apostasy, restored in the latter days (Moses 5:58–59; D&amp;C 128:18). Note 2 Enoch's role here — the Enoch material parallels Moses 6–7, which Joseph Smith produced without access to 2 Enoch (first published in English in 1896).</div>
+  </div>
+
+  <div class="card">
+    <h3>2. God is knowable</h3>
+    <p>Against Locke, Hume, and Kant (who limited knowledge to the senses) and against Nietzsche, Marx, Durkheim, and Freud (who called religion man-made), the ancient record insists the spiritual realm is knowable by direct experience — and that acquiring spiritual knowledge is <i>necessary</i> to reach one's full potential. Knowledge is the recurring motto of the show.</p>
+    <div class="eps"><span class="ep">Ep 2</span><span class="ep">Ep 3</span></div>
+    <div class="lds"><b>Restoration:</b> “If any of you lack wisdom, let him ask of God” (James 1:5) — the verse that produced the First Vision; personal revelation (Moroni 10:3–5); “a man is saved no faster than he gets knowledge” (Joseph Smith).</div>
+  </div>
+
+  <div class="card">
+    <h3>3. The divine council and plurality of gods</h3>
+    <p>Every major ancient culture knew a <b>council of the gods</b>: a Father-King presiding over princely sons who propose, deliberate, vote, and bind themselves by oath; a high council of <b>twelve</b>; the council as a court of judges (echoed today in a judge presiding over a twelve-person jury). The Hebrew Bible preserves it (Psalm 82: “God standeth in the congregation of the mighty; he judgeth among the gods”), and John 1 places Christ in that primordial council as a God assigned to create. The council chose the champion who would face the dragon, and the rebellion of one of its members began the war.</p>
+    <div class="eps"><span class="ep">Ep 16</span><span class="ep">Ep 17</span><span class="ep">Ep 18</span><span class="ep">Ep 19</span></div>
+    <div class="lds"><b>Restoration:</b> the Grand Council (Abraham 3:22–28); “the Gods” of the Abrahamic creation account (Abraham 4); the Twelve Apostles enthroned as judges (Luke 22:29–30; D&amp;C 29:12); the King Follett discourse on the plurality of gods.</div>
+  </div>
+
+  <div class="card">
+    <h3>4. Creation from eternal matter — never from nothing</h3>
+    <p>The primordial waters symbolize an infinite, chaotic, <i>pre-existing</i> substance with the potential for life. Creation is the imposing of <b>order</b> on it — sanctifying profane elements into sacred creation. Dr. Logan repeatedly notes this matches modern physics (conservation of energy, E=mc²) and that the ancients beat astrophysicists to the multiverse, the Big Bang singularity, and timelessness “before” time.</p>
+    <div class="eps"><span class="ep">Ep 10</span><span class="ep">Ep 11</span><span class="ep">Ep 14</span><span class="ep">Ep 30</span><span class="ep">Ep 49</span><span class="ep">Ep 50</span></div>
+    <div class="lds"><b>Restoration:</b> “The elements are eternal” (D&amp;C 93:33); the Gods “organized and formed” the heavens and earth (Abraham 4:1); Joseph Smith: creation from chaos, “element had an existence from the time He had” (King Follett discourse).</div>
+  </div>
+
+  <div class="card">
+    <h3>5. The word, the wind, and the light</h3>
+    <p>Creation proceeds: divine <b>thought</b> → divine <b>word</b> (Ptah creates by heart and tongue; “Let there be light”; the Popol Vuh's word; the Hopi creation song) → the <b>brooding wind</b>, God's breath/vital essence, which infuses every element with his <b>light</b> — the energy that counters the second law of thermodynamics, holds planets in orbit, and transmits truth (her fiber-optics analogy). “Ptah is in all things” = God's sustaining light is in all things; that is why winds and seas obey Christ.</p>
+    <div class="eps"><span class="ep">Ep 12</span><span class="ep">Ep 13</span><span class="ep">Ep 14</span><span class="ep">Ep 29</span></div>
+    <div class="lds"><b>Restoration:</b> D&amp;C 88:6–13 is nearly a restatement — the Light of Christ “which is in all things, which giveth life to all things, which is the law by which all things are governed”; “the word of my power” (Moses 1:32).</div>
+  </div>
+
+  <div class="card">
+    <h3>6. The dragon and the war in heaven</h3>
+    <p>The rebel of the council is everywhere a <b>sea serpent / dragon</b> of the chaotic deep: Tiamat, Yam, Leviathan, Rahab, Apophis, Anzu, Vritra, Kaliya, Fafnir, Set (as usurping murderer), Lucifer (“I will ascend above the heights… I will be like the Most High”). His rebellion is the refusal to honor the High God and the cosmic law; his weapons are chaos, spiritual wounds, and death. Good appears to lose (Osiris dies!) before the healing and victory. Even fairy tales keep the plot: every hero from Sigurd to Luke Skywalker, Cinderella to Katniss, is retelling the theomachy.</p>
+    <div class="eps"><span class="ep">Ep 15</span><span class="ep">Ep 19</span><span class="ep">Ep 20</span><span class="ep">Ep 21</span><span class="ep">Ep 22</span><span class="ep">Ep 23</span></div>
+    <div class="lds"><b>Restoration:</b> the war in heaven over agency and the Father's throne (Moses 4:1–4; Revelation 12); “that old serpent, who is the devil” (D&amp;C 76:28; 2 Nephi 2:18); the battle continues in each soul.</div>
+  </div>
+
+  <div class="card">
+    <h3>7. The anointing — becoming a “christ”</h3>
+    <p>The coronation series (occasioned by Charles III's 2023 coronation) uncovers the world's oldest rite: the king anointed with <b>myrrh oil</b> — the gift and sap of the Tree of Life — making him a sacral king “after the order of Melchizedek” (<i>melek</i> = king + <i>tzedek</i> = righteousness). Egyptian texts put the ointment of Horus's forehead on king Unas to make him divine (“akh-ified” — become like God). To be a <b>Christian</b> is literally to claim to be <i>anointed as Christ was anointed</i>; branches of Christianity that kept the anointing rite stand closer to the original tradition.</p>
+    <div class="eps"><span class="ep">Ep 6</span><span class="ep">Ep 7</span><span class="ep">Ep 8</span><span class="ep">Ep 9</span><span class="ep">Ep 25</span></div>
+    <div class="lds"><b>Restoration:</b> Latter-day Saints are among the few Christians who still practice a literal anointing, in the temple, with consecrated olive oil — looking toward becoming kings and queens, priests and priestesses; Christ = Messiah = “the Anointed One.”</div>
+  </div>
+
+  <div class="card">
+    <h3>8. Kingship is the heart of it all</h3>
+    <p>God is a <b>heavenly King</b> (Egyptian <i>nswt</i>, Akkadian <i>malku</i>, Hebrew <i>melek</i>) reigning from a throne in a temple-palace at the cosmic center — attested by Egyptians, Mesopotamians, Canaanites, Hebrews, Persians (Ahura Mazda), Hindus (Indra), Chinese (the Jade Emperor), Greeks, Norse, Aztecs, Incas, Hawaiians… Kingship as an institution appears fully formed with the first written records, and earthly coronations are replicas of the heavenly enthronement. The destiny of the faithful is not merely salvation but <b>coronation</b>: “He that overcometh, I will grant to sit with me in my throne” — the Sumerian temple hymn even says the holy mountain “gives birth to kings, plural.”</p>
+    <div class="eps"><span class="ep">Ep 25</span><span class="ep">Ep 26</span><span class="ep">Ep 27</span><span class="ep">Ep 45</span><span class="ep">Ep 46</span><span class="ep">Ep 47</span><span class="ep">Ep 48</span><span class="ep">Ep 49</span></div>
+    <div class="lds"><b>Restoration:</b> exaltation as kings and priests (Revelation 1:6; D&amp;C 132:19–20); “then shall they be gods” — thrones, kingdoms, dominions; each receiving an eternal increase and (per the ancients) worlds of their own.</div>
+  </div>
+
+  <div class="card">
+    <h3>9. The sacred center — stone, mound, and temple</h3>
+    <p>Everything radiates from the <b>sacred center</b>: the foundation stone, the primordial mound, the temple, the throne, the tree. Pyramids and ziggurats on five continents are stylized primordial mounds; cities, temples, and entire nations are founded on “center stones” (Jerusalem's Even haShetiyah, the Kaaba, Delphi's omphalos, Roma Quadrata, Cusco's wanka, Ireland's Lia Fáil, Hopi Oraibi). Its symbols: the circumpunct ⊙, the bindu, the swastika (blessings flowing from the center to the four corners), the royal umbrella, the four-pillared canopy. Rituals enact it: circumambulating the Kaaba, ring dances, wedding circuits. The center is where heaven touches earth — and the stone, layer upon layer, is finally a symbol of Christ himself, the “lid of hell” that locks the dragon down.</p>
+    <div class="eps"><span class="ep">Ep 31</span><span class="ep">Ep 32</span><span class="ep">Ep 33</span><span class="ep">Ep 34</span><span class="ep">Ep 35</span><span class="ep">Ep 36</span><span class="ep">Ep 37</span><span class="ep">Ep 38</span><span class="ep">Ep 39</span><span class="ep">Ep 40</span><span class="ep">Ep 60</span><span class="ep">Ep 61</span></div>
+    <div class="lds"><b>Restoration:</b> the temple as the axis of Zion and of the Saints' lives; Christ the chief cornerstone and “rock of our Redeemer” (Helaman 5:12); the center place of Zion (D&amp;C 57:1–3); gathering in concentric stakes around it.</div>
+  </div>
+
+  <div class="card">
+    <h3>10. God is embodied, sexed, and married</h3>
+    <p>The “Who is God?” series argues from the oldest texts that God is (a) <b>corporeal</b> — a glorified body of flesh and bone (the risen Christ eats fish and honeycomb precisely to prove it); (b) <b>sexed</b> — gods are male or female, each half of a reproductive whole (the bodiless, sexless God enters Judaism and Christianity late, via Plato through Philo and Maimonides); and (c) <b>married</b> — An &amp; Ki, Atum &amp; Iusaas, El &amp; Athirat (Asherah), Zeus &amp; Hera, Odin &amp; Frigg (“Beloved”), Izanagi &amp; Izanami. The Queen of Heaven is the “progenitress of the gods,” symbolized by the <b>sacred tree</b>; her Ugaritic epithet is <i>qudšu</i> — “Holiness” itself. Even Mary Magdalene's epithet, “the Tower,” marks a holy woman as a personified sanctuary.</p>
+    <div class="eps"><span class="ep">Ep 44</span><span class="ep">Ep 54</span><span class="ep">Ep 55</span><span class="ep">Ep 56</span><span class="ep">Ep 57</span><span class="ep">Ep 58</span></div>
+    <div class="lds"><b>Restoration:</b> “The Father has a body of flesh and bones as tangible as man's” (D&amp;C 130:22); the doctrine of Heavenly Mother (Gospel Topics essay; “O My Father”); compare Daniel Peterson's “Nephi and His Asherah” — the tree Nephi sees (1 Nephi 11) answered by a vision of a mother and the Son of God.</div>
+  </div>
+
+  <div class="card">
+    <h3>11. The divine family — and our premortal place in it</h3>
+    <p>The deep structure of every ancient pantheon is not a committee but a <b>family</b>: Father, Mother, and their sons and daughters. El is “father of gods <i>and men</i>”; gods and humans are the same species at different stages of development and sanctification. Cosmic-egg myths, Zuni and Hopi emergence accounts, and Eden itself attest that human beings lived as conscious children in the primordial realm and <i>chose</i> to come to a fallen world to learn good from evil and “become as the gods.”</p>
+    <div class="eps"><span class="ep">Ep 63</span><span class="ep">Ep 64</span><span class="ep">Ep 66</span></div>
+    <div class="lds"><b>Restoration:</b> “All men and women are… literally the sons and daughters of Deity”; premortal life (Abraham 3); the Fall as upward step (2 Nephi 2:22–25); “gods in embryo” — the Family Proclamation's “heavenly parents” and “divine nature and destiny.”</div>
+  </div>
+
+  <div class="card">
+    <h3>12. Marriage at the center — the crowning ordinance</h3>
+    <p>God married Adam and Eve in the garden temple. The Hindu wedding seats bride and groom — ritually a queen and king, anointed with haldi (turmeric) — beneath the <b>mandap</b>, a four-pillared canopy over the fire altar marking the Holy of Holies; the Jewish chuppah and the church ciborium/baldachin are the same structure. Couples circumambulate the altar or each other (hakafot, the hora; Izanagi and Izanami circling the heavenly pillar). Royal marriage at the sacred center — Rama and Sita, Siddhartha crowned with his wife and given “the whole kingdom” — fuses anointing, kingship, queenship, and the center into one rite. The Holy of Holies was anciently associated with the bridal chamber.</p>
+    <div class="eps"><span class="ep">Ep 4</span><span class="ep">Ep 59</span><span class="ep">Ep 60</span><span class="ep">Ep 61</span><span class="ep">Ep 62</span></div>
+    <div class="lds"><b>Restoration:</b> celestial marriage at the temple altar as the crowning ordinance, required for the highest degree of glory (D&amp;C 131:1–4; 132); husband and wife sealed toward thrones and kingdoms together — precisely the ancient pattern of king-and-queen coronation by marriage.</div>
+  </div>
+
+  <div class="card">
+    <h3>13. Esoteric knowledge and initiation</h3>
+    <p>Mesopotamia's <b>seven sages</b> (apkallu), “perfect in lofty wisdom,” sent by Enki, taught an esoteric “secret of the gods” reserved for the fully initiated and <b>essential to eternal life</b> — including rites that sanctify the body (Marduk: “Where are the seven sages of the Apsu who can make my body holy?”). Utnapishtim's rite in the ark conferred eternal life. Zoroastrianism's seven Amesha Spentas, Egypt's temple mysteries, Hopi ceremonies from Maasaw — the original religion had an inner, ritual, covenant core, not just public preaching. Modern religion that is purely exoteric has lost something the ancients considered indispensable.</p>
+    <div class="eps"><span class="ep">Ep 3</span><span class="ep">Ep 5</span><span class="ep">Ep 65</span></div>
+    <div class="lds"><b>Restoration:</b> the temple endowment — sacred, not secret; “the mysteries of godliness” and the power thereof in ordinances (D&amp;C 84:19–22); washing, anointing, clothing, and covenants pointing to eternal life.</div>
+  </div>
+
+  <div class="card">
+    <h3>14. “As above, so below”</h3>
+    <p>The governing principle of the ancient world: earth replicates heaven. Temples model the cosmos; coronations model the Son's enthronement; weddings model the divine marriage; the ring dance models the circle around the throne; the king is God's image and stand-in (Rome's <i>rex</i> as Jupiter's earthly representative). “Thus the gods did, thus men do” (Satapatha Brahmana). We are to imitate the hero's preparations — acquire his weapon (the word), his garment (protection), his anointing — because his story is the script for ours.</p>
+    <div class="eps"><span class="ep">Ep 21</span><span class="ep">Ep 41</span><span class="ep">Ep 48</span><span class="ep">Ep 68</span></div>
+    <div class="lds"><b>Restoration:</b> houses of God built “after the pattern of heavenly things” (Hebrews 8:5; D&amp;C 124); ordinances as rehearsals of the plan of salvation; the doctrine that the same sociality that exists here will exist there, “coupled with eternal glory” (D&amp;C 130:2).</div>
+  </div>
+
+  <div class="card">
+    <h3>15. Ma'at / Tzedek — the cosmic law of righteousness</h3>
+    <p>Beneath everything is one law: Egyptian <b>ma'at</b>, Hebrew <b>tzedek</b>, Vedic <b>ṛta</b>, Zoroastrian <b>asha</b> — truth, justice, rightness, cosmic order. God is God <i>because</i> he perfectly upholds it; his power flows from his righteousness; the dragon is its antithesis (chaos). Creation, kingship, temple, and salvation all run on this law — Dr. Logan playfully calls it the real “Theory of Everything.” God doesn't merely do righteousness; he <i>loves</i> it — so he can be trusted absolutely.</p>
+    <div class="eps"><span class="ep">Ep 28</span><span class="ep">Ep 33</span><span class="ep">Ep 51</span></div>
+    <div class="lds"><b>Restoration:</b> blessings predicated on law (D&amp;C 130:20–21); a kingdom governed by law (D&amp;C 88:36–39); God would “cease to be God” if justice were destroyed (Alma 42:13, 22–25); glory = intelligence, light, and truth (D&amp;C 93:36).</div>
+  </div>
+</section>
+
+<!-- ============ CHARACTERS ============ -->
+<section class="tab" id="characters">
+  <h2>Character &amp; Deity Map</h2>
+  <p>The podcast's central claim: the world's pantheons are the same small cast wearing different cultural costumes. Below, every major figure she discusses is grouped under its archetype, with the Christian / Latter-day Saint identification each archetype anchors to. Toggle to view by culture, or search any name.</p>
+  <div class="toggle-row">
+    <span class="small"><b>Group by:</b></span>
+    <button id="byArch" class="on">Archetype</button>
+    <button id="byCult">Culture</button>
+    <input class="searchbar" id="charSearch" type="search" placeholder="Search figures, cultures, descriptions… (e.g. Marduk, serpent, Hopi)" style="flex:1; min-width:220px; margin:0;">
+  </div>
+  <div class="note">A mapping means “plays the same role in the story,” not a one-to-one identity — myths blur and recombine (e.g., Osiris is both the slain beloved son <i>and</i> a resurrected heavenly king; Egyptian roles split between Osiris and his son Horus).</div>
+  <div id="charContainer"></div>
+</section>
+
+<!-- ============ WHO IS GOD ============ -->
+<section class="tab" id="god">
+  <h2>Who Is God? — The Consolidated Portrait</h2>
+  <p>Spread over a dozen episodes, the “Who is God?” series assembles this portrait from the world's oldest texts. Read as a single statement, it is striking how completely it matches the Restoration's doctrine of God — and how completely it contradicts post-Platonic creedal theism.</p>
+  <div class="card">
+    <table>
+      <tr><th style="width:30%">The ancients attest that God is…</th><th>What that means</th><th style="width:18%">Episodes</th></tr>
+      <tr><td><b>Lord of Ma'at / King of Tzedek</b></td><td>Defined first by perfect righteousness — truth, justice, fidelity, kindness. His godhood and power are the fruit of upholding the cosmic law; he can be trusted never to judge unfairly, harm, or fail us.</td><td><span class="ep">Ep 28</span></td></tr>
+      <tr><td><b>A being of ineffable light</b></td><td>His sanctified body blazes with glory — light that carries love, energy, and knowledge into every particle and every person; the power behind creation and revelation.</td><td><span class="ep">Ep 29</span> <span class="ep">Ep 30</span></td></tr>
+      <tr><td><b>Corporeal</b></td><td>A glorified body of flesh and bone, in whose image our bodies are formed. The risen Christ ate fish and honeycomb to prove exactly this. The bodiless God of the creeds came from Plato, not the prophets.</td><td><span class="ep">Ep 44</span> <span class="ep">Ep 55</span></td></tr>
+      <tr><td><b>A heavenly King</b></td><td>Enthroned in a temple-palace at the sacred center of the cosmos, reigning over an ordered kingdom — and authorizing the rites by which his children may be enthroned too.</td><td><span class="ep">Ep 45</span> <span class="ep">Ep 46</span> <span class="ep">Ep 47</span> <span class="ep">Ep 48</span> <span class="ep">Ep 49</span></td></tr>
+      <tr><td><b>A sexed being</b></td><td>The gods are male and female; each is half of a reproductive whole — which logically demands a female God beside the male.</td><td><span class="ep">Ep 54</span> <span class="ep">Ep 55</span></td></tr>
+      <tr><td><b>A married being</b></td><td>The High God reigns with his wife, the Queen of Heaven — El &amp; Athirat, An &amp; Ki, Atum &amp; Iusaas, Odin &amp; Frigg. She is the “progenitress of the gods,” symbolized by the sacred tree, named “Holiness” (qudšu).</td><td><span class="ep">Ep 56</span> <span class="ep">Ep 57</span> <span class="ep">Ep 58</span></td></tr>
+      <tr><td><b>A Father and Mother of a divine family</b></td><td>The defining divine power is procreative: God and his wife are parents of gods and of human beings — the same species at different stages. The whole theology is a family theology.</td><td><span class="ep">Ep 63</span> <span class="ep">Ep 64</span></td></tr>
+    </table>
+    <div class="lds"><b>Restoration summary:</b> An embodied, exalted Father (D&amp;C 130:22) of perfect righteousness, full of light and truth (D&amp;C 88; 93), a King over an ordered kingdom, married to a Mother in Heaven, parents of the human family (Family Proclamation), inviting their children to grow into their likeness (Romans 8:16–17; D&amp;C 132). Essentially every line of the ancient portrait is at home in Latter-day Saint theology — and almost none of it in the Westminster Confession.</div>
+  </div>
+  <div class="card small">
+    <h3>A note on the Father / Son distinction</h3>
+    <p>The ancient pattern consistently shows a <b>High God</b> (El, An/Anu, Atum) who presides, and a <b>beloved son</b> (Baal, Marduk/Ninurta, Osiris/Horus) who fights the dragon, creates, is crowned, and administers the kingdom. Dr. Logan reads John 1, Psalm 2, Psalm 110, and Hebrews 1 the same way: the Father enthrones the Son, who is the active creator-king — “the cosmic Christ,” the carpenter (Greek <i>tektōn</i>, master builder) of a cosmic temple. This two-figure structure is awkward for strict trinitarianism but is precisely the Latter-day Saint understanding: Elohim the Father, and Jehovah/Christ the Son — the God of the Old Testament, creator under the Father's direction.</p>
+  </div>
+</section>
+
+<!-- ============ SYMBOLS ============ -->
+<section class="tab" id="symbols">
+  <h2>Symbol Glossary</h2>
+  <p>“The theology was both revealed and concealed by way of symbols.” Symbols are layered — one symbol carries many reinforcing meanings. These are the ones she returns to most.</p>
+  <div class="sym-grid">
+    <div class="sym"><span class="ic">🌊</span> <b>Primordial waters</b> — the infinite, dark, chaotic, pre-existing matter before creation; potential for life; also the profane realm where the dragon dwells. Birth — physical and spiritual — comes “out of the water.” <span class="ep">Ep 10</span><span class="ep">Ep 11</span></div>
+    <div class="sym"><span class="ic">🐉</span> <b>Sea serpent / dragon / Leviathan</b> — the rebel son; chaos, entropy, sin, death. “Glistening like gold” because he is a fallen being of light. <span class="ep">Ep 15</span><span class="ep">Ep 19</span></div>
+    <div class="sym"><span class="ic">🌬️</span> <b>Brooding wind / breath</b> — God's vital essence and power moving on the waters; the energy of creation; the “weapon with which I struck the sea.” <span class="ep">Ep 13</span><span class="ep">Ep 23</span></div>
+    <div class="sym"><span class="ic">🥚</span> <b>Cosmic egg / gourd (hulu)</b> — the universe in embryo in the primordial realm; cracked open by God's light = the Big Bang. <span class="ep">Ep 30</span><span class="ep">Ep 36</span></div>
+    <div class="sym"><span class="ic">⛰️</span> <b>Primordial mound / pyramid / ziggurat</b> — the first land risen from the waters; the Son's kingdom made physical; Eden. Replicated in pyramids on five continents, celebrated at the spring-equinox New Year. <span class="ep">Ep 31</span><span class="ep">Ep 32</span></div>
+    <div class="sym"><span class="ic">🪨</span> <b>Foundation stone</b> — where creation began; God's throne-site; the four-corners crossing; the Holy of Holies; the “lid of hell” over the abyss; ultimately Christ himself, the Stone of Help (Eben-Ezer). Even haShetiyah, Kaaba stone, omphalos, Lia Fáil. <span class="ep">Ep 34</span><span class="ep">Ep 37</span></div>
+    <div class="sym"><span class="ic">🌳</span> <b>Tree of Life</b> — God; the Son (the Christmas tree is Christ); and the Mother (Asherah's tree/pole; Iusaas the acacia; the Mixtec mother-pochote). Source of the anointing sap, healing leaves, and royal lineage — humanity is “born of the tree.” <span class="ep">Ep 6</span><span class="ep">Ep 24</span><span class="ep">Ep 68</span><span class="ep">Ep 69</span></div>
+    <div class="sym"><span class="ic">🩸</span> <b>Myrrh / anointing oil</b> — the Tree's blood-red, bitter, fragrant resin; the healing balm of the wounded hero; what makes kings, priests, and “christs” (anointed ones). The wise men's gift. <span class="ep">Ep 8</span><span class="ep">Ep 9</span><span class="ep">Ep 24</span></div>
+    <div class="sym"><span class="ic">⚔️</span> <b>Special weapon</b> — Excalibur, the Barnstokkr sword, Marduk's bow, ruby slippers: the divine word/power, inherited only by the worthy heir, able to defeat the dragon and heal his wounds. <span class="ep">Ep 20</span><span class="ep">Ep 22</span></div>
+    <div class="sym"><span class="ic">🧥</span> <b>Cloak / armor / sacred garment</b> — the gifted protective covering, without which no hero survives the dragon; God clothed Adam and Eve in skins. <span class="ep">Ep 21</span></div>
+    <div class="sym"><span class="ic">👑</span> <b>Crown, throne &amp; scepter</b> — coronation on the Father's throne; the scepter/rod is a living branch of the Tree of Life (Aaron's rod that budded; wizards' wands are its degenerate descendants). <span class="ep">Ep 6</span><span class="ep">Ep 25</span></div>
+    <div class="sym"><span class="ic">🟡</span> <b>Golden sash</b> — the slain golden serpent worn as a trophy at the waist of the High Priest and of the risen Christ (Revelation 1:13). <span class="ep">Ep 15</span><span class="ep">Ep 16</span></div>
+    <div class="sym"><span class="ic">⊙</span> <b>Circumpunct / bindu</b> — the dot in the circle: God's throne at the sacred center with all creation circling it. Enacted at Mecca's Tawaf, Hindu shrines, and the dance around the Christmas tree. <span class="ep">Ep 39</span><span class="ep">Ep 40</span></div>
+    <div class="sym"><span class="ic">卐</span> <b>Swastika (ancient)</b> — the rotating four corners around the sacred center; blessings flowing from the center to all the world. One of the holiest pre-modern symbols, found worldwide (long before its 20th-century desecration). <span class="ep">Ep 60</span></div>
+    <div class="sym"><span class="ic">☂️</span> <b>Royal umbrella / canopy</b> — the cosmos in miniature: the shaft is the world-axis/tree at the center, the canopy the heavens; held over kings — every person under it a potential cosmic king (chakravartin). <span class="ep">Ep 61</span></div>
+    <div class="sym"><span class="ic">🛕</span> <b>Mandap / chuppah / ciborium / cella</b> — the four-pillared canopy over altar or couple: a portable Holy of Holies; marriage performed symbolically at the center of the cosmos. <span class="ep">Ep 59</span><span class="ep">Ep 62</span></div>
+    <div class="sym"><span class="ic">🐍</span> <b>Ouroboros / shen ring / cosmic wall</b> — the boundary God set around his sanctified creation, sealing out the profane waters; the bolt and the guard; the firmament; sacred vs. profane space. <span class="ep">Ep 51</span><span class="ep">Ep 52</span><span class="ep">Ep 53</span></div>
+    <div class="sym"><span class="ic">🕺</span> <b>Ring dance / circumambulation</b> — worshippers circling the throne/altar/tree/couple (Tawaf, hora, hakafot, carols, “Ring Around the Rosie,” the Lord of the Dance): hearts knit in unity around God. <span class="ep">Ep 40</span><span class="ep">Ep 41</span><span class="ep">Ep 62</span></div>
+    <div class="sym"><span class="ic">🧭</span> <b>Four corners / cardinal points</b> — geographic totality; the king of the four quarters rules the whole world; in Greek the four directions' initials spell ADAM — Adam, the original king of the four corners. <span class="ep">Ep 7</span><span class="ep">Ep 48</span></div>
+    <div class="sym"><span class="ic">🕳️</span> <b>Sipapu / hole between worlds</b> — the passage at the center through which humanity emerged from the pre-earth world into this one (Hopi kiva; Inca emergence). <span class="ep">Ep 66</span><span class="ep">Ep 67</span></div>
+    <div class="sym"><span class="ic">👁️</span> <b>Green Eye of Horus</b> — the restored, healed eye; wholeness and new life conferred through the anointing and the Opening of the Mouth; deification (“akh-ification”). <span class="ep">Ep 9</span></div>
+    <div class="sym"><span class="ic">🚤</span> <b>Holy barge / boat</b> — the sacred ordered “bubble” of creation floating safe on the chaotic waters (Ra's barque; Brahma's boat; the ark). <span class="ep">Ep 49</span><span class="ep">Ep 51</span></div>
+    <div class="sym"><span class="ic">🌲</span> <b>Christmas tree, wreath &amp; evergreens</b> — modern survivals of the Tree of Life and paradise trees; the tree in your living room is a symbol of Christ. <span class="ep">Ep 24</span></div>
+    <div class="sym"><span class="ic">⭐</span> <b>Eight-pointed star</b> — the center of time and space; the throne where the cosmic quarters and the year's quarters cross. <span class="ep">Ep 38</span></div>
+  </div>
+</section>
+
+<!-- ============ LDS CONNECTIONS ============ -->
+<section class="tab" id="ldsmap">
+  <h2>Latter-day Saint Connections</h2>
+  <p>The podcast never cites LDS sources — which makes the convergence more interesting, not less. Below, the reconstructed “Ancient Tradition” is set beside Restoration doctrine, point by point. (Temple-related parallels are kept at a general, reverent level.)</p>
+  <div class="card">
+    <table>
+      <tr><th style="width:38%">The Ancient Tradition teaches…</th><th style="width:38%">The Restoration teaches…</th><th>Key references</th></tr>
+      <tr><td>A pure religion was revealed to the first humans, then corrupted as it passed down (“telephone game”), but is recoverable.</td><td>The gospel was taught to Adam; lost through apostasy; restored through prophets in dispensations.</td><td>Moses 5:58–59; Amos 3:7; D&amp;C 1:17–23</td></tr>
+      <tr><td>God presided over a council of gods before the world was; assignments and stewardships were given there.</td><td>The Grand Council in heaven; noble and great ones chosen before birth; the Gods planned and executed the creation.</td><td>Abraham 3:22–28; 4:1; Alma 13:3</td></tr>
+      <tr><td>A beloved council member rebelled, sought the Father's throne, became the dragon, and wars against the faithful.</td><td>Lucifer rebelled, sought God's honor, was cast down with his followers, and continues the war here.</td><td>Moses 4:1–4; Isaiah 14:12–15; Rev 12:7–9</td></tr>
+      <tr><td>The selfless son volunteered, conquered by the power of his word, and created the world under his Father.</td><td>Jehovah (the premortal Christ) was chosen, and created worlds by the word of his power under the Father.</td><td>Abraham 3:27; Moses 1:32–33; John 1:1–3</td></tr>
+      <tr><td>Creation organized eternal, chaotic matter; <i>ex nihilo</i> is a later corruption.</td><td>“The elements are eternal”; the Gods “organized and formed” the heavens and the earth.</td><td>D&amp;C 93:33; Abraham 4; King Follett discourse</td></tr>
+      <tr><td>God's light/breath infuses all things, sustains all life, governs all motion, and transmits truth.</td><td>The Light of Christ is “in all things… giveth life to all things… the law by which all things are governed.”</td><td>D&amp;C 88:6–13, 41–47</td></tr>
+      <tr><td>The wounded hero is healed by the Tree's blood-red balm; his wounds heal ours.</td><td>The Atonement of Jesus Christ; the Tree of Life and its fruit, “most precious”; the love of God.</td><td>1 Nephi 8 &amp; 11; Alma 7:11–13; Mosiah 3:7</td></tr>
+      <tr><td>The victor is anointed and enthroned on his Father's throne — and makes the faithful kings and queens with kingdoms.</td><td>Christ overcame and sits in the Father's throne; the exalted become kings/queens, priests/priestesses, receiving thrones and kingdoms.</td><td>Rev 3:21; 1:6; D&amp;C 132:19–20; Rom 8:17</td></tr>
+      <tr><td>The Son's inheritance is an eternal, ever-growing kingdom — millions of worlds; universes beyond universes; innumerable heavenly kings.</td><td>“Worlds without number have I created”; the inhabitants thereof are begotten sons and daughters unto God; eternal increase.</td><td>Moses 1:33; D&amp;C 76:24; 88:37</td></tr>
+      <tr><td>God is a corporeal, glorified man — he eats, embraces, is seen by prophets.</td><td>The Father has a body of flesh and bones as tangible as man's; God seen face to face by prophets ancient and modern.</td><td>D&amp;C 130:22; JS—History 1:17; Ether 3</td></tr>
+      <tr><td>God is male and married; the Queen of Heaven is the “progenitress of the gods,” symbolized by the sacred tree.</td><td>A Mother in Heaven beside the Father; humanity as their children. (Nephi's tree vision links the tree with a mother and the Son.)</td><td>Gospel Topics: “Mother in Heaven”; “O My Father”; 1 Ne 11:8–22</td></tr>
+      <tr><td>Gods and humans are one species at different stages; we are children of the divine family who chose mortality to learn good from evil and become like the gods.</td><td>Premortal spirits, literal children of Heavenly Parents; the Fall and mortality as the planned school of godhood; “divine nature and destiny.”</td><td>Abraham 3:22–26; 2 Ne 2:22–25; Family Proclamation</td></tr>
+      <tr><td>Eden was earth's first temple; Adam and Eve its first king/queen and priest/priestess, married there by God; Adam appointed king of the whole earth.</td><td>Eden as sacred, temple-like space; Adam (Michael) holds the keys as the Ancient of Days; the endowment's narrative begins in Eden; marriage instituted by God in the garden.</td><td>D&amp;C 78:15–16; 107:53–56; Moses 3–5</td></tr>
+      <tr><td>The primordial hill / Garden of Eden stood at the center of the North American continent (Turtle Island).</td><td>Joseph Smith taught the Garden of Eden was in Jackson County, Missouri; Adam-ondi-Ahman nearby — the center place of Zion on the same continent.</td><td>D&amp;C 57:1–3; 116; 117:8</td></tr>
+      <tr><td>An esoteric, initiatory core — anointings, sacred clothing, secret/sacred knowledge — was essential to eternal life and reserved for the initiated.</td><td>Temple ordinances: washings, anointings, clothing, covenants — “the mysteries of godliness,” without which the power of godliness is not manifest.</td><td>D&amp;C 84:19–22; 124:37–40</td></tr>
+      <tr><td>Marriage performed at the sacred center, beneath the canopy of the Holy of Holies, crowns the couple toward cosmic kingship.</td><td>Sealing at the temple altar in the new and everlasting covenant — the gate to the highest degree of the celestial kingdom.</td><td>D&amp;C 131:1–4; 132:19</td></tr>
+      <tr><td>Heaven and earth were once in embrace and will be again; the golden age will return.</td><td>Enoch's Zion taken up and to return; the earth renewed to its paradisiacal glory; Christ to reign personally.</td><td>Moses 7:62–64; Article of Faith 10</td></tr>
+      <tr><td>God is knowable by direct, personal experience — and that knowledge is essential.</td><td>Personal revelation; the First Vision as paradigm; “this is life eternal, that they might know thee.”</td><td>James 1:5; John 17:3; Moroni 10:3–5</td></tr>
+    </table>
+  </div>
+  <div class="card small">
+    <h3>Honest footnotes for the careful student</h3>
+    <p><b>1.</b> Several of the scholars Dr. Logan leans on are also favorites of LDS scholarship — especially <b>Margaret Barker</b> (temple theology; she addressed the Joseph Smith bicentennial at the Library of Congress) and the divine-council work of E. Theodore Mullen and Simo Parpola, which echoes through LDS writing on Psalm 82 and Abraham 3. The resonance you feel is partly a shared scholarly stream. <b>2.</b> Comparative parallels can be cherry-picked; differences between traditions are real and Dr. Logan is selective by design (she's reconstructing, not surveying). <b>3.</b> The podcast is an outside witness, not an authority — its value for an LDS student is the repeated discovery that what the Restoration teaches uniquely is what the oldest texts of the human race also say. That is itself a quiet argument that the Restoration restored something genuinely ancient.</p>
+  </div>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section class="tab" id="sources">
+  <h2>Key Texts, Scholars &amp; Name Corrections</h2>
+  <div class="card">
+    <h3>Ancient texts she returns to constantly</h3>
+    <div class="two-col small">
+      <p><b>Enuma Elish</b> — Babylonian creation epic (Marduk vs. Tiamat); tablets from Ashurbanipal's library, found 1849.</p>
+      <p><b>Pyramid Texts</b> (kings Unas, Pepi II; esp. PT 600) — oldest religious corpus in Egypt; the primordial mound, anointing.</p>
+      <p><b>Papyrus of Ani</b> (Egyptian Book of the Dead) — Osiris enthroned as heavenly king on his father's throne.</p>
+      <p><b>Memphite Theology / Shabaka Stone</b> — Ptah creates by thought and word; the green breccia stone later reused as a millstone (British Museum).</p>
+      <p><b>Bremner-Rhind Papyrus</b> — Egyptian creation and Apophis texts.</p>
+      <p><b>Epic of Gilgamesh</b> — Utnapishtim's flood account and the secret rite of the gods in the ark.</p>
+      <p><b>Anzu myth</b> — the bird-monster steals the Tablet of Destinies; Ninurta defeats him.</p>
+      <p><b>Kesh Temple Hymn</b> — possibly the world's oldest religious text (~2600 BC), from Nippur.</p>
+      <p><b>Enki and the World Order; Sumerian King List</b> — kingship lowered from heaven; the mountain “giving birth to kings.”</p>
+      <p><b>Ugaritic Baal Cycle</b> (Ras Shamra tablets) — El, Athirat, Baal vs. Yam; “eternal kingdom, everlasting dominion.”</p>
+      <p><b>2 Enoch / Book of the Holy Secrets of Enoch</b> — her favorite pseudepigraphon: Enoch's ascent, Adam crowned king, ADAM four-directions anagram.</p>
+      <p><b>Joseph and Aseneth</b> — pseudepigraphon: the glorious heavenly man, the honeycomb, Aseneth's transformation into a radiant being.</p>
+      <p><b>Hebrew Bible</b> — Genesis 1–3 (Eden as sanctuary — Richard Davidson's “Earth's First Sanctuary”), Psalms (82; 89; 110; royal/enthronement psalms), Isaiah 6, 14, 27, 51; Job 38, 41.</p>
+      <p><b>New Testament</b> — John 1; Matthew 2 (Magi), 16:18; Luke 22:29–30, 24:36–48; Hebrews 1–2; Revelation 1, 3:21, 12, 19.</p>
+      <p><b>Avesta / Gathas &amp; Yashts</b> — Ahura Mazda and the seven Amesha Spentas.</p>
+      <p><b>Rig Veda; Satapatha Brahmana; Bhagavata Purana; Brahmavaivarta Purana (parade of Indras); Ramayana</b> — Indra/Vritra; Krishna/Kaliya; Rama and Sita's wedding.</p>
+      <p><b>Popol Vuh</b> — Maya creation by the word (the manuscript from Santo Tomás Chichicastenango).</p>
+      <p><b>Kojiki</b> — Izanagi and Izanami circle the heavenly pillar.</p>
+      <p><b>Talmud &amp; Zohar</b> — Leviathan's skin made into a tabernacle; the stone cast into the abyss.</p>
+      <p><b>Oral accounts</b> — Lenape Turtle Island (told by Tantaqué, recorded by Jasper Danckaerts, 1679); Hopi (Tawa &amp; Spider Woman; Maasaw at Oraibi; kiva &amp; sipapu — via Frank Waters); Zuni emergence; Maidu and Tututni-Joshua creations; Maori Rangi &amp; Papa; Dayak Mahatala &amp; Jata; Australian Baiame; African accounts (Kuba Bumba, Ashanti Onyankopon, Lozi Nyambe and his wife, Dinka, Benin, Sandawe baobab).</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Scholars she cites (corrected spellings)</h3>
+    <p class="small two-col">
+      <b>Mircea Eliade</b> — sacred center, <i>in illo tempore</i>, myth of eternal return ·
+      <b>Marinus van der Sluijs</b> — worldwide creation cosmologies ·
+      <b>René Guénon</b> — the “primordial tradition” ·
+      <b>Lord Raglan</b> — ritual diffusion from one center ·
+      <b>Joseph Campbell</b> — the monomyth, <i>Hero with a Thousand Faces</i> ·
+      <b>E. Theodore Mullen</b> — <i>The Assembly of the Gods</i> (divine council) ·
+      <b>Simo Parpola</b> — Assyrian royal religion ·
+      <b>Margaret Barker</b> — temple theology ·
+      <b>Wayne Horowitz</b> — <i>Mesopotamian Cosmic Geography</i> ·
+      <b>R.T. Rundle Clark</b> — <i>Myth and Symbol in Ancient Egypt</i> ·
+      <b>David Leeming</b> — <i>The World of Myth</i> ·
+      <b>A.M. Hocart</b> — <i>Kingship</i> ·
+      <b>Richard M. Davidson</b> — “Earth's First Sanctuary” (Eden as temple) ·
+      <b>Frank Waters</b> — <i>Book of the Hopi</i> ·
+      <b>Francesca Stavrakopoulou</b> — <i>God: An Anatomy</i> ·
+      <b>John Rossner</b> — exorcising Locke/Hume/Kant ·
+      <b>Kurt Sethe, James P. Allen</b> — Egyptology/Pyramid Texts ·
+      <b>Alex Filippenko, Brian Cox, Andrei Linde</b> — astrophysics (multiverse, Big Bang).
+    </p>
+  </div>
+  <div class="card">
+    <h3>Transcript spelling corrections</h3>
+    <p class="small">The AI transcripts garble names. The left column is what the transcript file says; the right is the correct form (used throughout this guide).</p>
+    <table class="small">
+      <tr><th>Transcript says…</th><th>Should be…</th><th>Who/what it is</th></tr>
+      <tr><td>Ray</td><td><b>Ra / Re</b></td><td>Egyptian sun god</td></tr>
+      <tr><td>Newt</td><td><b>Nut</b></td><td>Egyptian sky goddess</td></tr>
+      <tr><td>Pata / Patah</td><td><b>Ptah</b></td><td>Memphite creator god (creates by word)</td></tr>
+      <tr><td>Pepe</td><td><b>Pepi II</b></td><td>Pharaoh whose pyramid holds PT 600</td></tr>
+      <tr><td>Unus / Eunice</td><td><b>Unas (Unis)</b></td><td>Pharaoh of the earliest Pyramid Texts</td></tr>
+      <tr><td>Papyrus of Annie</td><td><b>Papyrus of Ani</b></td><td>The Egyptian Book of the Dead</td></tr>
+      <tr><td>Chewbacca / Chibagga stone</td><td><b>Shabaka Stone</b></td><td>Memphite Theology, British Museum</td></tr>
+      <tr><td>Bremener Rhined</td><td><b>Bremner-Rhind Papyrus</b></td><td>Egyptian ritual papyrus</td></tr>
+      <tr><td>Asher Bonipol</td><td><b>Ashurbanipal</b></td><td>Assyrian king; his library held the Enuma Elish</td></tr>
+      <tr><td>Unapishtim / “and Lil” / Anil</td><td><b>Utnapishtim; Enlil</b></td><td>Mesopotamian flood hero; high god</td></tr>
+      <tr><td>Ansu</td><td><b>Anzu</b></td><td>Bird-monster who stole the Tablet of Destinies</td></tr>
+      <tr><td>Azanath / Azaneth</td><td><b>Aseneth</b></td><td><i>Joseph and Aseneth</i> (pseudepigraphon)</td></tr>
+      <tr><td>Atart / Adirad / a tart</td><td><b>Athirat (Asherah)</b></td><td>El's wife, Queen of Heaven (Ugarit)</td></tr>
+      <tr><td>kudzu</td><td><b>qudšu / qdš</b></td><td>Her epithet: “Holiness”</td></tr>
+      <tr><td>Usaz / Yousas / “you saw us”</td><td><b>Iusaas</b></td><td>Atum's wife, the acacia tree goddess</td></tr>
+      <tr><td>Arishkigal</td><td><b>Ereshkigal</b></td><td>Mesopotamian underworld goddess</td></tr>
+      <tr><td>Uhura Mazda / Amishas Penta</td><td><b>Ahura Mazda; Amesha Spentas</b></td><td>Zoroastrian God; his seven holy ones</td></tr>
+      <tr><td>Theomache / Theomaki</td><td><b>theomachy</b></td><td>The battle of the gods</td></tr>
+      <tr><td>Zeptepe</td><td><b>Zep Tepi</b></td><td>Egyptian “First Time” (golden age)</td></tr>
+      <tr><td>Dylmun / Delume</td><td><b>Dilmun</b></td><td>Sumerian paradise land</td></tr>
+      <tr><td>Kriyayuga</td><td><b>Krita (Satya) Yuga</b></td><td>Hindu golden age</td></tr>
+      <tr><td>barn stoker tree</td><td><b>Barnstokkr</b></td><td>The tree holding Sigmund's sword (Volsunga saga)</td></tr>
+      <tr><td>Kamaphora</td><td><b>Commiphora myrrha</b></td><td>The myrrh tree</td></tr>
+      <tr><td>Keshe Temple Hymn</td><td><b>Kesh Temple Hymn</b></td><td>Oldest known religious text</td></tr>
+      <tr><td>Ibn Hashetiyah</td><td><b>Even haShetiyah</b></td><td>The Foundation Stone, Temple Mount</td></tr>
+      <tr><td>Omphala</td><td><b>omphalos</b></td><td>Greek “navel” stone at Delphi</td></tr>
+      <tr><td>circum-punk(ed)</td><td><b>circumpunct</b></td><td>The ⊙ symbol</td></tr>
+      <tr><td>Sela / Sibirium</td><td><b>cella; ciborium</b></td><td>Inner sanctum; four-pillared altar canopy</td></tr>
+      <tr><td>Zulkan</td><td><b>Tzolk'in</b></td><td>Maya sacred calendar</td></tr>
+      <tr><td>Korokancha</td><td><b>Coricancha</b></td><td>Inca golden temple at Cusco</td></tr>
+      <tr><td>Bayami</td><td><b>Baiame</b></td><td>Australian Aboriginal creator</td></tr>
+      <tr><td>Razi</td><td><b>Lozi</b></td><td>Zambian people (God and his wife lived on earth)</td></tr>
+      <tr><td>Sundawi / Sandawi</td><td><b>Sandawe</b></td><td>Tanzanian people; Matunda &amp; the baobab</td></tr>
+      <tr><td>Tonkwe / Jasper Dankert</td><td><b>Tantaqué; Jasper Danckaerts</b></td><td>Lenape elder &amp; the 1679 diarist of Turtle Island</td></tr>
+      <tr><td>Tertuni Joshua</td><td><b>Tututni (Joshua)</b></td><td>Oregon tribe, creation account</td></tr>
+      <tr><td>Minyung</td><td><b>Minyong</b></td><td>Adi tribe, NE India (heaven-earth separation myth)</td></tr>
+      <tr><td>Mersey El-Yati / Merced Eliade</td><td><b>Mircea Eliade</b></td><td>Romanian historian of religion</td></tr>
+      <tr><td>Gounon</td><td><b>René Guénon</b></td><td>French traditionalist philosopher</td></tr>
+      <tr><td>van der Sluis / Sloes</td><td><b>Marinus van der Sluijs</b></td><td>Cosmology comparativist</td></tr>
+      <tr><td>Stavro Kapulu, “God and Anatomy”</td><td><b>Francesca Stavrakopoulou, <i>God: An Anatomy</i></b></td><td>Hebrew Bible scholar &amp; book</td></tr>
+      <tr><td>Suttabhatha Brahmana</td><td><b>Satapatha Brahmana</b></td><td>Vedic text (“thus the gods did, thus men do”)</td></tr>
+      <tr><td>ochified</td><td><b>akh-ified (akh)</b></td><td>Egyptian glorified/transfigured being</td></tr>
+      <tr><td>Haya / Hey-oo</td><td><b>Heh (Huh)</b></td><td>Egyptian god personifying the flood/infinity</td></tr>
+      <tr><td>Hali / Haldi ceremony</td><td><b>Haldi ceremony</b></td><td>Hindu turmeric anointing of bride &amp; groom (distinct from the Urartian god Haldi, also discussed)</td></tr>
+      <tr><td>chukufa</td><td><b>hakafot</b></td><td>Jewish wedding circling</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============ EPISODES ============ -->
+<section class="tab" id="episodes">
+  <h2>Episode Index (1–69)</h2>
+  <input class="searchbar" id="epSearch" type="search" placeholder="Filter episodes… (e.g. coronation, dragon, marriage, Hopi)">
+  <div id="epList"></div>
+</section>
+
+</main>
+
+<script>
+// ---------- Tabs ----------
+const navBtns = document.querySelectorAll('#nav button');
+function showTab(id){
+  document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('active', s.id===id));
+  navBtns.forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
+  window.scrollTo({top:0});
+}
+navBtns.forEach(b=>b.addEventListener('click', ()=>showTab(b.dataset.tab)));
+
+// ---------- Episode data ----------
+const EPISODES = [
+[1,"The Ancient Tradition","The premise: reputable scholars (Raglan, Guénon, Eliade, van der Sluijs) find worldwide correspondences pointing to one primordial religion. The 'telephone game in reverse' method of stubborn bits."],
+[2,"Is it Possible to Know God?","Against Locke, Hume, and Kant: the ancient record attests the spiritual realm is knowable by direct personal experience — and that such knowledge is essential."],
+[3,"Man-Made or God-Revealed?","Against Nietzsche, Marx, Durkheim, Freud: the ancients unanimously claim their religion was revealed by God — Thoth in Egypt, Enlil to Utnapishtim, Baiame in Australia, Mahatala in Borneo."],
+[4,"The Garden of Eden","Eden was earth's first temple. Adam and Eve were made its first king and queen, priest and priestess, and were married there by God himself — a revealed temple theology of kingship, priesthood, and marriage."],
+[5,"The Book of the Holy Secrets of Enoch","2 Enoch: the tradition revealed anew to Enoch, seventh from Adam; God declares he appointed Adam a king in Eden; books to be copied for the generations."],
+[6,"Coronation I: The King and the Tree of Life","The scepter is a branch of the Tree of Life (Moses' rod, Aaron's budding rod); kingship grows from the tree. Wands are its degenerate descendants."],
+[7,"Coronation II: King of the Four Corners","The Cosmati Pavement; the king crowned at the center of the four quarters as 'the next Adam' — whose name in Greek is an anagram of the four cardinal directions."],
+[8,"Coronation III: The Fragrant Dew of Paradise","The anointing oil: myrrh, the fragrant blood-red resin of paradise's tree. Zadok, Melchizedek ('king of righteousness'), and Mary's spikenard filling the house."],
+[9,"Coronation IV: The Green Eye of Horus","The Opening of the Mouth and the anointing make the king divine ('akh-ified'). To be a Christian is literally to claim to be anointed as Christ was."],
+[10,"The Greatest Mystery in the World","Worldwide, creation accounts begin the same way: darkness and primordial waters — Egypt, Mesopotamia, the Kuba, Tuamotu Polynesia, the Cherokee."],
+[11,"The Mysterious Primordial Waters","The waters symbolize infinite, chaotic, pre-existing eternal matter pregnant with life. Creation ex nihilo is rejected outright — matching the first law of thermodynamics."],
+[12,"The Word that Changed the Universe","Creation begins with thought given utterance: Ptah's Memphite Theology, the Popol Vuh, the Maori wānanga, Tawa and Spider Woman's creation song."],
+[13,"The Incomprehensible Brooding Wind","The wind brooding on the waters is God's breath/vital essence infused into all things — why the elements, winds, and seas obey him."],
+[14,"The Terrifying 2nd Law of Thermodynamics","Entropy vs. the brooding wind: God's infused light is the external energy that orders the cosmos and sustains life (John 1: in him was life and light)."],
+[15,"Sea Monsters, Sea Serpents & Leviathans","The chaos dragon of the deep — Tiamat, Leviathan — glistening like gold; the High Priest's golden sash as the slain serpent; Leviathan's skin made into a temple."],
+[16,"The Council of the Gods","The divine council: the high god presides; the council deliberates, votes, binds itself by oath; Marduk/Christ elected to face the dragon and crowned king after victory."],
+[17,"More Than One God","Hebrew elohim and John 1: Christ as a God among the gods of the primordial council, assigned there to create the earth by the word."],
+[18,"A High Council of Twelve","The council numbers twelve princely sons who sit as judges on thrones — promised by Christ to the apostles (Luke 22); echoed in judge-plus-twelve-jury courts."],
+[19,"The Great Primordial Theomachy","The rebellion: Yam refuses homage to El; Anzu steals the Tablet of Destinies; Lucifer — 'I will ascend… I will be like the Most High.' War before the world."],
+[20,"Epic Swords, Golden Bows & Ruby Slippers","The hero's special weapon, found at the mountain/cave of God, only obtainable by the worthy heir — all symbolic of the spiritual weapon we each need."],
+[21,"The Cloak of Invulnerability","The hero's gifted protective garment — armor, cloaks, skins. 'As above, so below': we are to emulate the hero's preparations."],
+[22,"The Wounded Hero","The dragon's wounds = cosmic and spiritual chaos; the special weapon must heal and order; it is 'the heritage of the servants of the Lord' (Isaiah 54)."],
+[23,"The Troubling Death of Osiris","Set murders the beloved son to usurp his throne; despair before victory. The Mari letter: the king receives 'the weapon with which I struck the sea.'"],
+[24,"O Christmas Tree","The healing balm: the Tree of Life's sap/honey heals the hero's wounds (Joseph and Aseneth's honeycomb); the Christmas tree is a symbol of Christ the Tree."],
+[25,"The King of Kings","The victor is anointed and enthroned on his father's throne (Papyrus of Ani; Enuma Elish; Revelation 3:21) — and makes others kings: hence King of kings."],
+[26,"A Cosmic Kingdom","The victor's inheritance: an eternal, everlasting kingdom — which cannot be one world. Millions of worlds; a truly cosmic Christ."],
+[27,"Universes Beyond Universes","Every newly crowned king and queen receives kingdoms; the ancients' theology requires universes beyond universes — anticipating the multiverse."],
+[28,"Who is God? Lord of Ma'at / King of Tzedek","God is defined by the cosmic law of righteousness (ma'at/tzedek): perfectly just, true, faithful, kind — the real Theory of Everything."],
+[29,"Who is God? A Being of Ineffable Light","God's light carries love, energy, and knowledge into every particle and person — the fiber-optic analogy; the sword of truth in an age of lies."],
+[30,"The Grand Primordial Singularity (Big Bang)","The cosmic egg cracked: God's light bursting from the timeless Holy of Holies into the abyss — the ancients' Big Bang, told millennia early."],
+[31,"Pyramid Text 600","The benben: the primordial mound, first land out of the waters. Pyramids, ziggurats, and mounds worldwide replicate it; the spring equinox New Year celebrates it."],
+[32,"Turtle Island","The Lenape elder Tantaqué (to Jasper Danckaerts, 1679): the turtle lifted the primordial hill, and its sacred tree grew at the center of North America — the Garden of Eden's true location."],
+[33,"'I Found Nowhere to Rest'","Divine rest = enthronement in the Holy of Holies after subduing chaos; rest requires the temple and is shared only with those who conquer the dragon."],
+[34,"The Eben-Ezer","The foundation stone is the Stone of Help — God himself (David's stone vs. Goliath; Dickens' Ebenezer 'stone of help' Scrooge softened by the Stone)."],
+[35,"Ala-al-Din, Rukh & Makkah","Aladdin's cave (dragon's lair) vs. the sacred stone; the Kaaba's black stone fell from heaven to mark earth's first altar and temple; the Tawaf."],
+[36,"Roma-Quadrata, Qusqu Wanka, Lia Fáil & Sip-Oraibi","Center stones worldwide: Rome, Cusco, Ireland's Lia Fáil, Hopi Oraibi — where Maasaw gifted sacred knowledge at 'the center of the universe.'"],
+[37,"Petra — The 'Lid of Hell'","The foundation stone as the lid sealing the abyss; Matthew 16:18 — the rock, the temple, and the gates of hell that shall not prevail."],
+[38,"'And He Went a Little Further…'","Layers of the sacred center's symbolism; the eight-pointed star as the center of time and space; symbols stack and reinforce."],
+[39,"The Circumpunct & The Bindu","The dot in the circle: the throne at the center with creation circling it — Tawaf, Hindu tika anointing on the forehead, the dance around the Christmas tree."],
+[40,"The Compass Stone & The Ring Dance","Circumambulation everywhere: Mecca, Orthodox weddings circling the altar, the Jewish hora — the circumpunct in motion around God's throne."],
+[41,"The Lord of the Dance","Krishna defeats the serpent Kaliya by dancing; sacred circle dance from the Druids to Michael Flatley — the dance that defeats the Lord of Darkness."],
+[42,"An-Ki: The Earth in Heaven's Embrace","Heaven and earth began in intimate embrace (Sumerian An-Ki; Rangi and Papa; African accounts of the low sky when God — and his wife — lived among men)."],
+[43,"Terra In Illo Tempore","The golden age: Zep Tepi, Dilmun, Krita Yuga, Eden, the Dreamtime — no time, death, entropy, or predation while earth lay near heaven."],
+[44,"Who is God? A Corporeal Being","Egyptian texts and the risen Christ eating fish and honeycomb (Luke 24): God has a glorified body of flesh and bone that can embrace us."],
+[45,"Who is God? A Heavenly King","God reigns as celestial sovereign over his offspring and authorizes the rites by which his children may become heavenly kings — what Anzu tried to steal."],
+[46,"Nswt, Malku & Melek, Part I","Kingship at the heart of Egyptian and Mesopotamian religion; El enthroned in his temple with his wife Athirat over 'the sons of El' — a family kingdom."],
+[47,"Nswt, Malku & Melek, Part II","Kingship at the heart of Canaanite, Hebrew, and Christian religion: royal psalms, Isaiah's enthroned King, Christ's heavenly enthronement in Hebrews."],
+[48,"Ahura Mazda","Zoroastrian high king of righteousness (asha) with seven Amesha Spentas; the Magi — Persian priests — bring the Christ child temple gifts: gold, frankincense, myrrh."],
+[49,"The Jade Emperor & Indra(s)","China's celestial king; Vishnu's parade of Indras: heavenly kings beyond counting, each ruling a universe — bubbles of ordered space on the waters."],
+[50,"A Cosmic Temple","Creation = sanctified, ordered, bounded space carved out of the profane waters: the entire cosmos is a temple."],
+[51,"The Cosmic Wall: Holy Barge & Water Bolt","Marduk bolts the waters out and sets a guard — God establishes the boundary protecting sacred creation from chaos."],
+[52,"The Cosmic Wall: Ouroboros & Shen Ring","Egyptian symbols of the sealed boundary between sacred and profane; Heliopolis' undulating walls; magic circles as degenerate echoes."],
+[53,"The Cosmic Wall: Compass & Firmament","God circumscribes the deep (Proverbs 8; Job 26); the Red Sea's walls of water; Christ the tektōn — master builder of the cosmic temple."],
+[54,"Who is God? A Sexed Being, Part I","Near Eastern gods are decidedly male and female; Asherah 'walks on the sea'; the theology depends on El's fatherhood and Athirat's motherhood."],
+[55,"Who is God? A Sexed Being, Part II","Worldwide, gods are sexed. The sexless, bodiless deity entered Judaism and Christianity late — from Plato through Philo and Maimonides."],
+[56,"Who is God? A Married Being, Part I","An & Ki; Atum & Iusaas (the acacia tree); Egypt's married pantheon; cathedral pillars as the trees of an Edenic garden sanctuary."],
+[57,"Who is God? A Married Being, Part II","El & Athirat, whose epithet qudšu means 'Holiness'; Mary Magdalene 'the Tower' — holy women as the personification of the sanctuary."],
+[58,"Who is God? A Married Being, Part III","Zeus & Hera; Odin & Frigg (whose name means 'Beloved' — Friday is Frigg's day); Izanagi & Izanami wed circling the heavenly pillar."],
+[59,"Royal Marriage & The Sacred Center, Part I","Rama and Sita wed before the fire altar beneath the mandap — marriage performed at the symbolic center of the cosmos; Siddhartha crowned with his wife."],
+[60,"The Sacred Swastika","The ancient swastika: the four corners rotating around the sacred center, blessings flowing outward; bride and groom anointed (haldi) as queen and king."],
+[61,"The Royal Umbrella","The umbrella as cosmos: axis-tree at center, canopy of heaven — raised over kings; every Hindu groom a potential chakravartin (cosmic king)."],
+[62,"Royal Marriage & The Sacred Center, Part II","Wedding circumambulations — Hindu, Japanese, Jewish chuppah and hakafot — the ring around the throne; 'a pattern of celestial peace.'"],
+[63,"Who is God? A Father/Mother of a Divine Family","El, father of gods and men; Asherah, progenitress of the gods; gods and humans one species at different stages — ritual exists to make us like the gods."],
+[64,"Attestations of a Pre-Earth Existence","The divine family includes us: cosmic-egg and emergence accounts of conscious life before birth; Eve's choice to gain knowledge and become 'as the gods.'"],
+[65,"Seven Sages 'Perfect in Lofty Wisdom'","Enki sends the seven apkallu with the esoteric 'secret of the gods' — initiation rites that sanctify the body, essential for eternal life."],
+[66,"How Did We Human Beings Get Here?","Human origin accounts agree: we were created/born by an exalted being and entered this world through the sacred center — holy ground, a holy temple."],
+[67,"The Hole Between Worlds","The sipapu in every Hopi kiva and the Inca emergence: a passage at the center connecting the pre-earth world to this one — we prayed to come through."],
+[68,"The Baobab Tree & The Oak-Born","Humanity born from the sacred tree: the Sandawe baobab (Matunda), Rome's oak-born ancestors of Jupiter's tree — heaven-begotten and authorized to rule."],
+[69,"The Pochote Tree of the Dynasty","The Mixtec mother-tree of Apoala births the royal dynasty: those born of the tree are the royal heirs — 'we catch a glimpse of our royal destiny.'"]
+];
+
+// ---------- Character data ----------
+const ARCH = {
+  father:{label:"The Most High — the Father", maps:"Maps to God the Father (Elohim): the embodied, married King presiding over the council and the divine family.", cls:"father"},
+  mother:{label:"The Queen of Heaven — the Mother", maps:"Maps to Heavenly Mother: the High God's wife, progenitress of gods and humans, symbolized by the sacred tree.", cls:"mother"},
+  son:{label:"The Beloved Son — dragon-slayer, creator, King of kings", maps:"Maps to Jesus Christ (Jehovah): chosen in council, conquers the rebel, creates, is wounded and healed, anointed and enthroned.", cls:"son"},
+  adversary:{label:"The Rebel Son — the dragon", maps:"Maps to Lucifer/Satan: the council member who coveted the throne, became the chaos serpent, and wars on order and light.", cls:"adversary"},
+  revealer:{label:"Revealers & Sages", maps:"Maps to prophets, angels, and dispensations: heaven's messengers delivering the tradition, its rites, and its esoteric knowledge.", cls:"revealer"},
+  humanity:{label:"First Parents & Humanity", maps:"Maps to Adam & Eve, Noah, and all of us: royal children of the gods passing through mortality toward thrones.", cls:"humanity"}
+};
+const FIGURES = [
+ {n:"El", c:"Canaan / Ugarit", a:"father", d:"High god enthroned in his temple-palace with his wife Athirat, presiding over 'the council of the sons of El' — father of gods and men.", e:[16,19,46,54,57,63]},
+ {n:"Anu / An", c:"Mesopotamia", a:"father", d:"Sky-father and king; with his wife Ki, parent of the Anunnaki ('offspring of An and Ki'). Source of kingship's authority.", e:[16,17,46,56]},
+ {n:"Atum", c:"Egypt", a:"father", d:"Heliopolitan creator and father of the gods; husband of Iusaas, the acacia-tree goddess.", e:[28,56,57,63]},
+ {n:"Elohim / the Most High", c:"Israel & Christianity", a:"father", d:"Presides over the congregation of the gods (Psalm 82); enthrones the Son (Psalm 2; 110; Hebrews 1); the throne Lucifer coveted.", e:[17,18,19,25]},
+ {n:"Ahura Mazda", c:"Persia", a:"father", d:"The 'Wise Lord,' king of righteousness (asha), father of the seven Amesha Spentas.", e:[48]},
+ {n:"The Jade Emperor", c:"China", a:"father", d:"Celestial king reigning over an ordered heavenly court and family.", e:[49,55]},
+ {n:"Zeus", c:"Greece & Rome", a:"father", d:"King of the gods, enthroned with Hera, queen of heaven.", e:[45,55,58]},
+ {n:"Jupiter", c:"Greece & Rome", a:"father", d:"Sky-father whose sacred oak embodies him; source of the Roman king's (rex) authority — with Juno, the model of cosmic kingship.", e:[68]},
+ {n:"Odin", c:"Norse / Germanic", a:"father", d:"Allfather of the Aesir, reigning with Frigg in mutual respect and deep affection — parents of a divine race.", e:[58]},
+ {n:"Brahma", c:"India", a:"father", d:"Creator floating on the primordial waters; countless Brahmas govern countless universes; consort of Saraswati.", e:[49,56]},
+ {n:"Tawa", c:"Hopi & Zuni", a:"father", d:"Sun father who, with Spider Woman, creates by sacred thought and the first song: 'Father of all, life and light I am.'", e:[12]},
+ {n:"Baiame", c:"Australia", a:"father", d:"Supreme Being who revealed spiritual truths and initiation ceremonies at the most sacred place, in a temple-like setting.", e:[1,3]},
+ {n:"Mahatala", c:"Borneo (Ngaju Dayak)", a:"father", d:"Godhead of the sacred land who descends on the mountains, meets the first people, and gives them sacred gifts and ceremonies — with his companion Jata.", e:[1,3]},
+ {n:"Rangi", c:"Polynesia / Maori", a:"father", d:"Sky father locked in embrace with Papa, the earth mother — the An-Ki motif of heaven and earth entwined.", e:[42,66]},
+ {n:"Izanagi", c:"Japan", a:"father", d:"With Izanami, weds by circling the heavenly pillar of their palace — divine marriage at the world-axis (Kojiki).", e:[58,62]},
+ {n:"Onyankopon", c:"Africa", a:"father", d:"Ashanti high god who anciently lived on earth, near to humanity, before withdrawing to the sky.", e:[42]},
+ {n:"Nyambe", c:"Africa", a:"father", d:"Lozi (Zambia) god who 'lived here below among men' — with his wife — when the world began.", e:[42]},
+ {n:"Matunda", c:"Africa", a:"father", d:"Sandawe (Tanzania) God who stands at the baobab tree from which all living things — including the first family — emerge.", e:[68]},
+
+ {n:"Asherah / Athirat", c:"Canaan / Ugarit", a:"mother", d:"El's wife and 'progenitress of the gods'; epithet qudšu — 'Holiness'; 'walks on the sea'; symbolized by the sacred tree or pole.", e:[54,56,57,63]},
+ {n:"Ki / Ninhursag", c:"Mesopotamia", a:"mother", d:"Earth-mother and wife of An; mother of the Anunnaki; Ninhursag the 'lady of the sacred mountain,' mother of gods.", e:[46,56,64]},
+ {n:"Iusaas", c:"Egypt", a:"mother", d:"Wife of Atum, symbolized in the Pyramid and Coffin Texts by the acacia tree — the tree-mother who gives birth to gods and kings.", e:[56,57,63]},
+ {n:"Hathor / Mut / Isis / Nut", c:"Egypt", a:"mother", d:"Egypt's divine wives and mothers: Ra & Hathor, Amun & Mut, Osiris & Isis, Geb & Nut — the pantheon is a family of married gods.", e:[56]},
+ {n:"Saraswati", c:"India", a:"mother", d:"Consort of the creator; goddess of wisdom — the feminine beside the throne.", e:[56,57]},
+ {n:"Frigg", c:"Norse / Germanic", a:"mother", d:"Odin's queen, foremost of goddesses, loving mother of great wisdom. Her name means 'Beloved' — Friday is Frigg's day.", e:[58]},
+ {n:"Hera / Juno", c:"Greece & Rome", a:"mother", d:"Queen of heaven enthroned beside the king of the gods.", e:[55,58,68]},
+ {n:"Spider Woman", c:"Hopi & Zuni", a:"mother", d:"'Mother of all, receiver of light and weaver of life' — co-creator with Tawa through thought and song; forms beings of clay and sings them to life.", e:[12]},
+ {n:"Papa", c:"Polynesia / Maori", a:"mother", d:"Earth mother embraced by Rangi the sky father in the beginning.", e:[42]},
+ {n:"Izanami", c:"Japan", a:"mother", d:"Divine wife who circles the heavenly pillar with Izanagi in the first marriage rite.", e:[58,62]},
+ {n:"The Mother Pochote / Ceiba", c:"Mesoamerica", a:"mother", d:"Mixtec 'great mother' tree of Apoala with a woman's face, from whose trunk the royal dynasty is born.", e:[69]},
+ {n:"Mary Magdalene ('the Tower')", c:"Israel & Christianity", a:"mother", d:"An echo, not the Mother herself: her epithet 'tower' parallels qudšu — a holy woman as personified sanctuary / Holy of Holies.", e:[57]},
+
+ {n:"Marduk", c:"Mesopotamia", a:"son", d:"Elected in the council, proves his power by the word, slays Tiamat, builds the cosmos from her carcass, bolts out the waters, and is crowned king of the gods.", e:[15,16,17,21,25,51,65]},
+ {n:"Ninurta", c:"Mesopotamia", a:"son", d:"Warrior son who defeats Anzu and recovers the Tablet of Destinies, restoring the order of heaven.", e:[19,22,45]},
+ {n:"Baal", c:"Canaan / Ugarit", a:"son", d:"Defeats Yam (Prince Sea) and receives 'an eternal kingdom, everlasting dominion' — the selfless son's inheritance.", e:[19,26,27]},
+ {n:"Osiris", c:"Egypt", a:"son", d:"The beloved son murdered by his brother Set; resurrected and enthroned on his father's throne as heavenly king (Papyrus of Ani) — wounded-hero and king-of-kings in one.", e:[23,25,44]},
+ {n:"Horus", c:"Egypt", a:"son", d:"Son who defeats Set and avenges his father; his healed green Eye and the anointing of his forehead deify each new king.", e:[9,23,25]},
+ {n:"Jehovah / Christ", c:"Israel & Christianity", a:"son", d:"The Word of John 1, a God in the council; subdues Leviathan/Rahab; the wounded, anointed Messiah crowned on his Father's throne; the tektōn (master builder) of the cosmic temple; King of kings who makes kings.", e:[12,16,17,22,25,37,53]},
+ {n:"Indra", c:"India", a:"son", d:"Slays the serpent Vritra to free the waters; Vishnu reveals Indras beyond counting — every universe has its heavenly king.", e:[49]},
+ {n:"Krishna", c:"India", a:"son", d:"Subdues the serpent Kaliya by dancing on his heads — the Lord of the Dance defeating the dragon.", e:[41]},
+ {n:"Rama (with Sita)", c:"India", a:"son", d:"The royal couple wed at the fire altar beneath the mandap — the son's royal marriage at the sacred center.", e:[59]},
+ {n:"Teshub", c:"Anatolia (Hurrian/Hittite)", a:"son", d:"Storm-god who battles the serpent — the Anatolian telling of the theomachy and enthronement.", e:[25]},
+ {n:"Thor", c:"Norse / Germanic", a:"son", d:"Hammer-wielding dragon-fighter against the world serpent — the Norse champion of order.", e:[19]},
+ {n:"Apollo", c:"Greece & Rome", a:"son", d:"Slays the great serpent at Delphi, where the omphalos stone marks the sacred center.", e:[35,39]},
+ {n:"Sigurd / Beowulf / Arthur", c:"Norse / Germanic", a:"son", d:"Hero echoes: Sigurd draws the sword from Barnstokkr and slays Fafnir; Beowulf and Excalibur retell the worthy heir's dragon-fight.", e:[20,21,22]},
+ {n:"Luke, Frodo, Cinderella, Katniss, Aladdin, Dorothy", c:"Modern echoes", a:"son", d:"Modern storytelling keeps the monomyth: an unlikely heir, a gifted weapon/garment, a dark lord, a wound, a victory, a coronation (or slipper).", e:[19,20,35]},
+ {n:"The Lord of the Dance", c:"Modern echoes", a:"son", d:"Michael Flatley's hero defeats Don Dorcha, Lord of Darkness, through dance — the Krishna/Kaliya plot on a Dublin stage.", e:[41]},
+
+ {n:"Set", c:"Egypt", a:"adversary", d:"The envious brother who murders Osiris to usurp his throne — the rebel son as usurping kinsman.", e:[23]},
+ {n:"Apophis / Apep", c:"Egypt", a:"adversary", d:"The chaos serpent of the dark waters, eternally assaulting the barque of Ra — chaos attacking the ordered creation.", e:[15,51]},
+ {n:"Tiamat", c:"Mesopotamia", a:"adversary", d:"Dragon of the salt sea who wars on the gods; her defeat and divided carcass become the ordered cosmos.", e:[15,16]},
+ {n:"Yam", c:"Canaan / Ugarit", a:"adversary", d:"'Prince Sea,' who demands El's throne and orders his messengers to refuse homage to the council — categorical rebellion.", e:[19,26]},
+ {n:"Leviathan / Rahab", c:"Israel & Christianity", a:"adversary", d:"The biblical sea dragon subdued by Yahweh (Job 41; Psalm 89; Isaiah 27); his skin destined for a tabernacle — evil's defeat builds the temple.", e:[15,22]},
+ {n:"Anzu", c:"Mesopotamia", a:"adversary", d:"The bird-monster who steals the Tablet of Destinies: 'I will take kingship for myself' — the theft of the rites of kingship.", e:[19,22,45]},
+ {n:"Lucifer", c:"Israel & Christianity", a:"adversary", d:"'I will ascend… I will exalt my throne… I will be like the Most High' (Isaiah 14) — the rebel of the council named.", e:[19]},
+ {n:"Vritra", c:"India", a:"adversary", d:"The serpent who hoards the waters until Indra slays him — chaos withholding life.", e:[49]},
+ {n:"Kaliya", c:"India", a:"adversary", d:"The venomous naga of the Yamuna, subdued beneath Krishna's dancing feet.", e:[41]},
+ {n:"Fafnir", c:"Norse / Germanic", a:"adversary", d:"Greed transfigured into a dragon, slain by Sigurd with the inherited sword.", e:[20,21]},
+ {n:"Don Dorcha", c:"Modern echoes", a:"adversary", d:"The 'Lord of Darkness' of Flatley's Lord of the Dance — the dragon still cast in our entertainment.", e:[41]},
+
+ {n:"Thoth", c:"Egypt", a:"revealer", d:"Lord of the sacred ceremonial: revealed every aspect of Egyptian temple worship and rites to the first Egyptians.", e:[3,4]},
+ {n:"Enki & the Seven Apkallu", c:"Mesopotamia", a:"revealer", d:"The god of wisdom sends seven antediluvian sages, 'perfect in lofty wisdom,' who teach the esoteric 'secret of the gods' essential to eternal life.", e:[65]},
+ {n:"The Amesha Spentas", c:"Persia", a:"revealer", d:"Ahura Mazda's seven holy ones — the recurring 'seven' of heaven's ministers.", e:[48,65]},
+ {n:"Maasaw", c:"Hopi & Zuni", a:"revealer", d:"Met the Hopi clans at Oraibi, 'the center of the universe,' and gifted sacred knowledge preserved in their ceremonies.", e:[36]},
+ {n:"Enoch", c:"Israel & Christianity", a:"revealer", d:"Seventh from Adam; received 'everything from beginning to end' anew, wrote books for the generations (2 Enoch).", e:[5,7]},
+ {n:"The Magi", c:"Persia", a:"revealer", d:"Zoroastrian priests who read the star and brought temple gifts — gold, frankincense, myrrh — to the infant King.", e:[48]},
+
+ {n:"Adam & Eve", c:"Israel & Christianity", a:"humanity", d:"Earth's first king and queen, priest and priestess; married by God in the garden temple; Adam the 'king of the four corners' whose Greek name spells the cardinal directions; Eve's wise choice opens the path of knowledge.", e:[4,5,7,64]},
+ {n:"Utnapishtim", c:"Mesopotamia", a:"humanity", d:"The Mesopotamian Noah; in the ark Enlil revealed 'a mystery of the gods' and performed a rite giving him and his wife eternal life.", e:[3,4]},
+ {n:"Noah / Manu", c:"Israel & Christianity", a:"humanity", d:"Flood survivors who carry the tradition through the waters into a new world (Hebrew Noah; Hindu Manu).", e:[15]},
+ {n:"Tantaqué's people (Lenape)", c:"Americas — North", a:"humanity", d:"Woodland tradition: the turtle raised the primordial hill; the first people relate to the tree at the center of North America.", e:[32,66]},
+ {n:"Hopi & Zuni emergence", c:"Hopi & Zuni", a:"humanity", d:"Humanity climbs from the pre-earth world through the sipapu at the center — having prayed to come through and 'grow wiser.'", e:[64,66,67]},
+ {n:"The tree-born", c:"Mesoamerica", a:"humanity", d:"Mixtec dynasts born of the pochote; Rome's oak-born; the Sandawe family out of the baobab — born of the Tree = royal heirs of the divine parents.", e:[68,69]},
+ {n:"Aseneth", c:"Israel & Christianity", a:"humanity", d:"In Joseph and Aseneth: visited by a glorious heavenly man, fed the honeycomb of paradise, transformed until her face shone 'like the sun' — the human journey to glorification.", e:[24,25,28]},
+ {n:"Gilgamesh", c:"Mesopotamia", a:"humanity", d:"The king who quests for eternal life and learns the secret things from before the flood — humanity searching for the tradition.", e:[3,4]}
+];
+
+// ---------- Character rendering ----------
+const cultOrder = ["Egypt","Mesopotamia","Canaan / Ugarit","Israel & Christianity","Persia","India","China","Japan","Greece & Rome","Norse / Germanic","Anatolia (Hurrian/Hittite)","Polynesia / Maori","Australia","Borneo (Ngaju Dayak)","Africa","Hopi & Zuni","Americas — North","Mesoamerica","Modern echoes"];
+let groupMode = "arch";
+const charContainer = document.getElementById('charContainer');
+const charSearch = document.getElementById('charSearch');
+
+function epPills(arr){ return '<div class="eps">'+arr.map(n=>`<span class="ep" onclick="gotoEp(${n})">Ep ${n}</span>`).join('')+'</div>'; }
+function figCard(f){
+  const a = ARCH[f.a];
+  return `<div class="fig ${a.cls}"><span class="nm">${f.n}</span><span class="badge ${a.cls}">${f.a==='father'?'Father':f.a==='mother'?'Mother':f.a==='son'?'Son':f.a==='adversary'?'Adversary':f.a==='revealer'?'Revealer':'Humanity'}</span><div class="cu">${f.c}</div><div class="ds">${f.d}</div>${epPills(f.e)}</div>`;
+}
+function renderChars(){
+  const q = charSearch.value.trim().toLowerCase();
+  const match = f => !q || (f.n+' '+f.c+' '+f.d).toLowerCase().includes(q);
+  let html = '';
+  if(groupMode==='arch'){
+    for(const key of ['father','mother','son','adversary','revealer','humanity']){
+      const items = FIGURES.filter(f=>f.a===key && match(f));
+      if(!items.length) continue;
+      const a = ARCH[key];
+      html += `<div class="arch-head"><h3>${a.label}</h3><span class="maps">${a.maps}</span></div><div class="figure-grid">${items.map(figCard).join('')}</div>`;
+    }
+  } else {
+    for(const cu of cultOrder){
+      const items = FIGURES.filter(f=>f.c===cu && match(f));
+      if(!items.length) continue;
+      html += `<div class="arch-head"><h3>${cu}</h3></div><div class="figure-grid">${items.map(figCard).join('')}</div>`;
+    }
+  }
+  charContainer.innerHTML = html || '<p class="note">No figures match that search.</p>';
+}
+document.getElementById('byArch').addEventListener('click', e=>{groupMode='arch'; e.target.classList.add('on'); document.getElementById('byCult').classList.remove('on'); renderChars();});
+document.getElementById('byCult').addEventListener('click', e=>{groupMode='cult'; e.target.classList.add('on'); document.getElementById('byArch').classList.remove('on'); renderChars();});
+charSearch.addEventListener('input', renderChars);
+renderChars();
+
+// ---------- Episode index ----------
+const epList = document.getElementById('epList');
+function renderEps(filter){
+  const q = (filter||'').trim().toLowerCase();
+  epList.innerHTML = EPISODES.filter(e=>!q || (e[1]+' '+e[2]).toLowerCase().includes(q))
+    .map(e=>`<div class="ep-item" id="epi-${e[0]}"><span class="n">EP ${e[0]}</span><span class="t">${e[1]}</span><div class="small">${e[2]}</div></div>`).join('')
+    || '<p class="note">No episodes match.</p>';
+}
+document.getElementById('epSearch').addEventListener('input', e=>renderEps(e.target.value));
+renderEps();
+
+// ---------- Episode pill navigation ----------
+function gotoEp(n){
+  showTab('episodes');
+  document.getElementById('epSearch').value=''; renderEps();
+  const el = document.getElementById('epi-'+n);
+  if(el){ el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('hl'); setTimeout(()=>el.classList.remove('hl'), 2500); }
+}
+// Make all static .ep pills clickable
+document.querySelectorAll('.ep').forEach(p=>{
+  if(!p.onclick){ const m = p.textContent.match(/(\d+)/); if(m) p.addEventListener('click', ()=>gotoEp(+m[1])); }
+});
+</script>
+</body>
+</html>
